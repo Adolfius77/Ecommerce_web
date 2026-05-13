@@ -1,0 +1,260 @@
+/* Reseteo general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #1e2124;
+    color: #ffffff;
+}
+
+/* Contenedor principal - Flexbox para dividir pantalla */
+.layout-container {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* --- MENU LATERAL --- */
+.sidebar {
+    width: 250px;
+    background-color: #282b30;
+    border-right: 1px solid #36393e;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar nav {
+    margin-top: 20px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #b9bbbe;
+    text-decoration: none;
+    border-bottom: 1px solid #36393e;
+    transition: background-color 0.2s;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: #36393e;
+    color: #ffffff;
+}
+
+/* --- PANEL PRINCIPAL --- */
+.main-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- BARRA SUPERIOR --- */
+.topbar {
+    height: 60px;
+    background-color: #282b30;
+    border-bottom: 1px solid #36393e;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 20px;
+}
+
+.topbar-links a {
+    color: #b9bbbe;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.topbar-links a:hover {
+    color: #ffffff;
+}
+
+.topbar-links i {
+    margin-right: 5px;
+}
+
+/* --- CONTENIDO --- */
+.content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    color: #202124;
+}
+
+/* --- PIE DE PÁGINA --- */
+.footer {
+    height: 50px;
+    background-color: #282b30;
+    border-top: 1px solid #36393e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer p {
+    color: #b9bbbe;
+    font-size: 14px;
+}
+
+/* --- DETALLE PRODUCTO --- */
+.detalle-header {
+    margin-bottom: 20px;
+}
+
+.link-volver {
+    color: #1a73e8;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.link-volver i {
+    margin-right: 6px;
+}
+
+.detalle-producto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.galeria-principal {
+    height: 320px;
+    background-color: #e8eaed;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5f6368;
+}
+
+.galeria-mini {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.galeria-thumb {
+    width: 70px;
+    height: 70px;
+    background-color: #e8eaed;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5f6368;
+    font-size: 13px;
+}
+
+.detalle-info h2 {
+    font-size: 26px;
+    margin-bottom: 5px;
+}
+
+.detalle-categoria {
+    color: #5f6368;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.detalle-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.estrellas {
+    color: #fbbc04;
+    font-size: 16px;
+}
+
+.rating-text {
+    font-size: 14px;
+    color: #5f6368;
+}
+
+.detalle-precio {
+    font-size: 24px;
+    color: #1a73e8;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.detalle-descripcion {
+    color: #3c4043;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.detalle-lista {
+    margin: 0 0 20px 20px;
+    color: #3c4043;
+}
+
+.detalle-lista li {
+    margin-bottom: 8px;
+}
+
+.detalle-acciones {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.selector-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f1f3f4;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.selector-cantidad button {
+    border: none;
+    background-color: #dadce0;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primario {
+    background-color: #1a73e8;
+    color: #ffffff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.detalle-extra {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 14px;
+    color: #5f6368;
+}
+
+.detalle-extra i {
+    margin-right: 6px;
+    color: #1a73e8;
+}
+
+@media (max-width: 900px) {
+    .detalle-producto {
+        grid-template-columns: 1fr;
+    }
+}
