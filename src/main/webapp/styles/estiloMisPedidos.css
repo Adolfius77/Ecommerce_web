@@ -1,0 +1,108 @@
+/* Complemento para historial de pedidos del cliente (usa layout de estiloCarrito.css) */
+
+.sidebar nav ul li a.active {
+    background-color: #36393e;
+    color: #ffffff;
+    border-left: 3px solid #1a73e8;
+}
+
+.pedidos-cliente-header {
+    margin-bottom: 20px;
+}
+
+.pedidos-cliente-header h2 {
+    font-size: 26px;
+    color: #202124;
+    margin-bottom: 5px;
+}
+
+.pedidos-cliente-header p {
+    color: #5f6368;
+    font-size: 15px;
+}
+
+.pedidos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pedido-historial-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.pedido-historial-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.pedido-historial-top h3 {
+    font-size: 18px;
+    color: #202124;
+}
+
+.pedido-meta {
+    font-size: 14px;
+    color: #5f6368;
+    margin-bottom: 6px;
+}
+
+.pedido-total {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a73e8;
+}
+
+.pedido-acciones {
+    margin-top: 14px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.badge-estado {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-pendiente {
+    background-color: #fef7e0;
+    color: #b06000;
+}
+
+.badge-enviado {
+    background-color: #e8f0fe;
+    color: #1a73e8;
+}
+
+.badge-entregado {
+    background-color: #e6f4ea;
+    color: #137333;
+}
+
+.detalle-pedido-lista {
+    margin-top: 12px;
+    padding-top: 12px;
+    padding-left: 4px;
+    border-top: 1px solid #e8eaed;
+    font-size: 14px;
+    color: #3c4043;
+    list-style: none;
+}
+
+.detalle-pedido-lista li {
+    margin-bottom: 6px;
+    padding-left: 1em;
+    list-style: disc outside;
+}

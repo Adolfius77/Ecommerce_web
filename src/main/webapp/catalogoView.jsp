@@ -21,10 +21,12 @@
             <nav>
                 <ul>
                     <li><a href="index.jsp"><i class="fa-solid fa-house"></i> Inicio</a></li>
-                    <li><a href="catalogoView.jsp"><i class="fa-solid fa-box-open"></i> Catálogo de productos</a></li>
+                    <li><a href="catalogoView.jsp" class="active"><i class="fa-solid fa-box-open"></i> Catálogo de productos</a></li>
                     <li><a href="carritoView.jsp"><i class="fa-solid fa-shopping-cart"></i> Carrito de compras</a></li>
-                    <li><a href="#pedidos"><i class="fa-solid fa-list"></i> Gestión de pedidos</a></li>
-                    <li><a href="loginView.jsp"><i class="fa-solid fa-user"></i> Iniciar sesión</a></li>
+                    <li><a href="misPedidosView.jsp"><i class="fa-solid fa-clock-rotate-left"></i> Mis pedidos</a></li>
+                    <li><a href="gestionProductosView.jsp"><i class="fa-solid fa-screwdriver-wrench"></i> Administración</a></li>
+                    <li><a href="perfilUsuarioView.jsp"><i class="fa-solid fa-user"></i> Mi perfil</a></li>
+                    <li><a href="loginView.jsp"><i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión</a></li>
                 </ul>
             </nav>
         </aside>
@@ -35,8 +37,8 @@
             <!-- Barra Superior -->
             <header class="topbar">
                 <div class="topbar-links">
-                    <a href="#perfil"><i class="fas fa-user"></i> Perfil</a>
-                    <a href="#logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a>
+                    <a href="perfilUsuarioView.jsp"><i class="fas fa-user"></i> Perfil</a>
+                    <a href="loginView.jsp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
                 </div>
             </header>
 
@@ -44,11 +46,11 @@
             <main class="content">
                 <div class="catalogo-header">
                     <div>
-                        <h2>Catalogo de productos</h2>
-                        <p>Encuentra productos usando filtros y barra de busqueda.</p>
+                        <h2>Catálogo de productos</h2>
+                        <p>Encuentra productos usando filtros y barra de búsqueda.</p>
                     </div>
                     <div class="search-bar">
-                        <input type="text" placeholder="Buscar productos, marcas o categorÃ­as">
+                        <input type="text" placeholder="Buscar productos, marcas o categorías">
                         <button class="btn-primario"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
                     </div>
                 </div>
@@ -57,9 +59,9 @@
                     <aside class="filtros">
                         <h3>Filtros</h3>
                         <div class="filtro-grupo">
-                            <label>Categori­as</label>
+                            <label>Categorías</label>
                             <div class="filtro-opciones">
-                                <label><input type="checkbox"> Tecnologi­a</label>
+                                <label><input type="checkbox"> Tecnología</label>
                                 <label><input type="checkbox"> Hogar</label>
                                 <label><input type="checkbox"> Accesorios</label>
                                 <label><input type="checkbox"> Moda</label>
@@ -75,11 +77,11 @@
                             </div>
                         </div>
                         <div class="filtro-grupo">
-                            <label>Valoracion</label>
+                            <label>Valoración</label>
                             <div class="filtro-opciones">
                                 <label><input type="checkbox"> 5 estrellas</label>
-                                <label><input type="checkbox"> 4 estrellas o mas</label>
-                                <label><input type="checkbox"> 3 estrellas o mas</label>
+                                <label><input type="checkbox"> 4 estrellas o más</label>
+                                <label><input type="checkbox"> 3 estrellas o más</label>
                             </div>
                         </div>
                         <div class="filtro-grupo">
@@ -95,11 +97,11 @@
                     <section class="productos-grid">
                         <article class="producto-card">
                             <div class="producto-img">Imagen</div>
-                            <h4>Audi­fonos inalambricos</h4>
+                            <h4>Audífonos inalámbricos</h4>
                             <p class="producto-marca">AudioPro</p>
                             <p class="producto-precio">$149.99</p>
                             <div class="producto-acciones">
-                                <a class="btn-secundario" href="productoDetalleView.html">Ver detalle</a>
+                                <a class="btn-secundario" href="productoDetalleView.jsp">Ver detalle</a>
                                 <button class="btn-primario">Agregar</button>
                             </div>
                         </article>
@@ -109,17 +111,17 @@
                             <p class="producto-marca">Active</p>
                             <p class="producto-precio">$89.00</p>
                             <div class="producto-acciones">
-                                <a class="btn-secundario" href="productoDetalleView.html">Ver detalle</a>
+                                <a class="btn-secundario" href="productoDetalleView.jsp">Ver detalle</a>
                                 <button class="btn-primario">Agregar</button>
                             </div>
                         </article>
                         <article class="producto-card">
                             <div class="producto-img">Imagen</div>
-                            <h4>Teclado mecenico RGB</h4>
+                            <h4>Teclado mecánico RGB</h4>
                             <p class="producto-marca">NovaKeys</p>
                             <p class="producto-precio">$129.50</p>
                             <div class="producto-acciones">
-                                <a class="btn-secundario" href="productoDetalleView.html">Ver detalle</a>
+                                <a class="btn-secundario" href="productoDetalleView.jsp">Ver detalle</a>
                                 <button class="btn-primario">Agregar</button>
                             </div>
                         </article>
@@ -129,17 +131,17 @@
                             <p class="producto-marca">CityLine</p>
                             <p class="producto-precio">$54.90</p>
                             <div class="producto-acciones">
-                                <a class="btn-secundario" href="productoDetalleView.html">Ver detalle</a>
+                                <a class="btn-secundario" href="productoDetalleView.jsp">Ver detalle</a>
                                 <button class="btn-primario">Agregar</button>
                             </div>
                         </article>
                         <article class="producto-card">
                             <div class="producto-img">Imagen</div>
-                            <h4>Kit de organizacion</h4>
+                            <h4>Kit de organización</h4>
                             <p class="producto-marca">HomePlus</p>
                             <p class="producto-precio">$32.00</p>
                             <div class="producto-acciones">
-                                <a class="btn-secundario" href="productoDetalleView.html">Ver detalle</a>
+                                <a class="btn-secundario" href="productoDetalleView.jsp">Ver detalle</a>
                                 <button class="btn-primario">Agregar</button>
                             </div>
                         </article>
@@ -149,7 +151,7 @@
                             <p class="producto-marca">Sprint</p>
                             <p class="producto-precio">$110.00</p>
                             <div class="producto-acciones">
-                                <a class="btn-secundario" href="productoDetalleView.html">Ver detalle</a>
+                                <a class="btn-secundario" href="productoDetalleView.jsp">Ver detalle</a>
                                 <button class="btn-primario">Agregar</button>
                             </div>
                         </article>

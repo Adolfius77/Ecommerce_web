@@ -49,6 +49,12 @@ body {
     color: #ffffff;
 }
 
+.sidebar nav ul li a.active {
+    background-color: #36393e;
+    color: #ffffff;
+    border-left: 3px solid #1a73e8;
+}
+
 /* --- PANEL PRINCIPAL --- */
 .main-panel {
     flex: 1;

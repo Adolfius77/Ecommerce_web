@@ -1,22 +1,16 @@
-<%-- 
-    Document   : newjsp
-    Created on : May 12, 2026, 7:34:43 PM
-    Author     : adolfo
---%>
-
+<%-- Perfil del cliente: editar nombre, dirección y contraseña --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto ECommerce - Registro</title>
+    <title>Mi perfil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./styles/estiloRegistro.css">
 </head>
 <body>
-
     <div class="layout-container">
-        <!-- Menu Lateral -->
         <aside class="sidebar">
             <nav>
                 <ul>
@@ -25,83 +19,74 @@
                     <li><a href="carritoView.jsp"><i class="fa-solid fa-shopping-cart"></i> Carrito de compras</a></li>
                     <li><a href="misPedidosView.jsp"><i class="fa-solid fa-clock-rotate-left"></i> Mis pedidos</a></li>
                     <li><a href="gestionProductosView.jsp"><i class="fa-solid fa-screwdriver-wrench"></i> Administración</a></li>
-                    <li><a href="perfilUsuarioView.jsp"><i class="fa-solid fa-user"></i> Mi perfil</a></li>
+                    <li><a href="perfilUsuarioView.jsp" class="active"><i class="fa-solid fa-user"></i> Mi perfil</a></li>
                     <li><a href="loginView.jsp"><i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión</a></li>
                 </ul>
             </nav>
         </aside>
-
-        <!-- Panel principal (Derecha) -->
         <div class="main-panel">
-            
-            <!-- Barra Superior -->
             <header class="topbar">
                 <div class="topbar-links">
                     <a href="perfilUsuarioView.jsp"><i class="fas fa-user"></i> Perfil</a>
                     <a href="loginView.jsp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
                 </div>
             </header>
-
-            <!-- Contenido -->
             <main class="content">
                 <div class="registro-card">
                     <div class="registro-header">
-                        <h2>Crea tu cuenta</h2>
-                        <p>Completa los datos para registrarte en el sistema.</p>
+                        <h2>Mi perfil</h2>
+                        <p>Actualiza tu nombre para mostrar, dirección y contraseña. El backend puede mapear solo correo, teléfono y dirección según el modelo Usuario actual.</p>
                     </div>
-                    <form class="registro-form">
+                    <form class="registro-form" action="#" method="post">
                         <div class="form-grid">
                             <div class="campo-form">
-                                <label for="nombre">Nombre</label>
-                                <input type="text" id="nombre" name="nombre" required>
+                                <label for="nombrePerfil">Nombre para mostrar</label>
+                                <input type="text" id="nombrePerfil" name="nombrePerfil" placeholder="Tu nombre">
                             </div>
                             <div class="campo-form">
-                                <label for="apellido">Apellido</label>
-                                <input type="text" id="apellido" name="apellido" required>
-                            </div>
-                        </div>
-                        <div class="form-grid">
-                            <div class="campo-form">
-                                <label for="email">Correo electrónico</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="campo-form">
-                                <label for="telefono">Teléfono</label>
-                                <input type="tel" id="telefono" name="telefono" required>
+                                <label for="correoPerfil">Correo electrónico</label>
+                                <input type="email" id="correoPerfil" name="correoPerfil" value="cliente@ejemplo.com" readonly>
                             </div>
                         </div>
                         <div class="form-grid">
                             <div class="campo-form">
-                                <label for="password">Contraseña</label>
-                                <input type="password" id="password" name="password" required>
+                                <label for="telefonoPerfil">Teléfono</label>
+                                <input type="tel" id="telefonoPerfil" name="telefonoPerfil" placeholder="Teléfono de contacto">
                             </div>
                             <div class="campo-form">
-                                <label for="confirmar">Confirmar contraseña</label>
-                                <input type="password" id="confirmar" name="confirmar" required>
+                                <label for="direccionPerfil">Dirección</label>
+                                <input type="text" id="direccionPerfil" name="direccionPerfil" placeholder="Calle, número, ciudad">
                             </div>
                         </div>
-                        <div class="campo-form">
-                            <label for="direccion">Dirección</label>
-                            <input type="text" id="direccion" name="direccion" placeholder="Calle, número, ciudad">
+                        <hr style="border:none;border-top:1px solid #e0e0e0;margin:20px 0;">
+                        <p style="font-size:14px;color:#5f6368;margin-bottom:12px;">Cambiar contraseña</p>
+                        <div class="form-grid">
+                            <div class="campo-form">
+                                <label for="passwordActual">Contraseña actual</label>
+                                <input type="password" id="passwordActual" name="passwordActual" autocomplete="current-password">
+                            </div>
+                            <div class="campo-form">
+                                <label for="passwordNueva">Nueva contraseña</label>
+                                <input type="password" id="passwordNueva" name="passwordNueva" autocomplete="new-password">
+                            </div>
                         </div>
-                        <div class="terminos">
-                            <label><input type="checkbox" required> Acepto los términos y condiciones</label>
+                        <div class="form-grid">
+                            <div class="campo-form">
+                                <label for="passwordConfirmar">Confirmar nueva contraseña</label>
+                                <input type="password" id="passwordConfirmar" name="passwordConfirmar" autocomplete="new-password">
+                            </div>
                         </div>
-                        <div class="botones-form">
-                            <button type="submit" class="btn-primario">Crear cuenta</button>
-                            <a class="btn-secundario" href="loginView.jsp">¿Ya tienes cuenta? Inicia sesión</a>
+                        <div class="botones-form" style="margin-top:10px;">
+                            <button type="submit" class="btn-primario">Guardar cambios</button>
+                            <a class="btn-secundario" href="catalogoView.jsp">Volver al catálogo</a>
                         </div>
                     </form>
                 </div>
             </main>
-
-            <!-- Pie de pagina -->
             <footer class="footer">
                 <p>Aplicaciones Web – Unidad 4</p>
             </footer>
-
         </div>
     </div>
-
 </body>
 </html>

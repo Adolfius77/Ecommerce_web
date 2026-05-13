@@ -23,8 +23,10 @@
                         <li><a href="index.jsp"><i class="fa-solid fa-house"></i> Inicio</a></li>
                         <li><a href="catalogoView.jsp"><i class="fa-solid fa-box-open"></i> Catálogo de productos</a></li>
                         <li><a href="carritoView.jsp"><i class="fa-solid fa-shopping-cart"></i> Carrito de compras</a></li>
-                        <li><a href="#pedidos"><i class="fa-solid fa-list"></i> Gestión de pedidos</a></li>
-                        <li><a href="loginView.jsp"><i class="fa-solid fa-user"></i> Iniciar sesión</a></li>
+                        <li><a href="misPedidosView.jsp"><i class="fa-solid fa-clock-rotate-left"></i> Mis pedidos</a></li>
+                        <li><a href="gestionProductosView.jsp"><i class="fa-solid fa-screwdriver-wrench"></i> Administración</a></li>
+                        <li><a href="perfilUsuarioView.jsp"><i class="fa-solid fa-user"></i> Mi perfil</a></li>
+                        <li><a href="loginView.jsp"><i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión</a></li>
                     </ul>
                 </nav>
             </aside>
@@ -35,15 +37,15 @@
                 <!-- Barra Superior -->
                 <header class="topbar">
                     <div class="topbar-links">
-                        <a href="#perfil"><i class="fas fa-user"></i> Perfil</a>
-                        <a href="#logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesiÃ³n</a>
+                        <a href="perfilUsuarioView.jsp"><i class="fas fa-user"></i> Perfil</a>
+                        <a href="loginView.jsp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
                     </div>
                 </header>
 
                 <!-- Contenido -->
                 <main class="content">
                     <div class="detalle-header">
-                        <a class="link-volver" href="catalogoView.html"><i class="fa-solid fa-arrow-left"></i> Volver al catalogo</a>
+                        <a class="link-volver" href="catalogoView.jsp"><i class="fa-solid fa-arrow-left"></i> Volver al catálogo</a>
                     </div>
 
                     <div class="detalle-producto">
