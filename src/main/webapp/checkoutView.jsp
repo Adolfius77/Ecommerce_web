@@ -1,3 +1,10 @@
+<%-- 
+    Document   : newjsp
+    Created on : May 12, 2026, 7:34:43 PM
+    Author     : adolfo
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -13,11 +20,11 @@
         <aside class="sidebar">
             <nav>
                 <ul>
-                    <li><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
-                    <li><a href="catalogoView.html"><i class="fa-solid fa-box-open"></i> Catálogo de productos</a></li>
-                    <li><a href="carritoView.html"><i class="fa-solid fa-shopping-cart"></i> Carrito de compras</a></li>
+                    <li><a href="index.jsp"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                    <li><a href="catalogoView.jsp"><i class="fa-solid fa-box-open"></i> Catálogo de productos</a></li>
+                    <li><a href="carritoView.jsp"><i class="fa-solid fa-shopping-cart"></i> Carrito de compras</a></li>
                     <li><a href="#pedidos"><i class="fa-solid fa-list"></i> Gestión de pedidos</a></li>
-                    <li><a href="loginView.html"><i class="fa-solid fa-user"></i> Iniciar sesión</a></li>
+                    <li><a href="loginView.jsp"><i class="fa-solid fa-user"></i> Iniciar sesión</a></li>
                 </ul>
             </nav>
         </aside>

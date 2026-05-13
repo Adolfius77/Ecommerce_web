@@ -1,3 +1,10 @@
+<%-- 
+    Document   : newjsp
+    Created on : May 12, 2026, 7:34:43 PM
+    Author     : adolfo
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -13,11 +20,11 @@
         <aside class="sidebar">
             <nav>
                 <ul>
-                    <li><a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
-                    <li><a href="catalogoView.html"><i class="fa-solid fa-box-open"></i> Catálogo de productos</a></li>
-                    <li><a href="carritoView.html"><i class="fa-solid fa-shopping-cart"></i> Carrito de compras</a></li>
+                   <li><a href="index.jsp"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                    <li><a href="catalogoView.jsp"><i class="fa-solid fa-box-open"></i> Catálogo de productos</a></li>
+                    <li><a href="carritoView.jsp"><i class="fa-solid fa-shopping-cart"></i> Carrito de compras</a></li>
                     <li><a href="#pedidos"><i class="fa-solid fa-list"></i> Gestión de pedidos</a></li>
-                    <li><a href="loginView.html"><i class="fa-solid fa-user"></i> Iniciar sesión</a></li>
+                    <li><a href="loginView.jsp"><i class="fa-solid fa-user"></i> Iniciar sesión</a></li>
                 </ul>
             </nav>
         </aside>
@@ -29,7 +36,7 @@
             <header class="topbar">
                 <div class="topbar-links">
                     <a href="#perfil"><i class="fas fa-user"></i> Perfil</a>
-                    <a href="#logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+                    <a href="#logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesiÃ³n</a>
                 </div>
             </header>
 
@@ -37,7 +44,7 @@
             <main class="content">
                 <div class="carrito-header">
                     <h2>Carrito de compras</h2>
-                    <p>Revisa tus artículos, ajusta cantidades o elimina productos.</p>
+                    <p>Revisa tus arti­culos, ajusta cantidades o elimina productos.</p>
                 </div>
 
                 <div class="carrito-grid">
@@ -46,7 +53,7 @@
                             <div class="item-img">Imagen</div>
                             <div class="item-info">
                                 <h4>Smartwatch Fit</h4>
-                                <p>Color negro · Stock disponible</p>
+                                <p>Color negro Â· Stock disponible</p>
                                 <span class="item-precio">$89.00</span>
                             </div>
                             <div class="item-controles">
@@ -59,8 +66,8 @@
                         <article class="carrito-item">
                             <div class="item-img">Imagen</div>
                             <div class="item-info">
-                                <h4>Audífonos inalámbricos</h4>
-                                <p>Color blanco · Stock disponible</p>
+                                <h4>AudÃ­fonos inalÃ¡mbricos</h4>
+                                <p>Color blanco Â· Stock disponible</p>
                                 <span class="item-precio">$149.00</span>
                             </div>
                             <div class="item-controles">
@@ -79,7 +86,7 @@
                             <span>$238.00</span>
                         </div>
                         <div class="resumen-linea">
-                            <span>Envío</span>
+                            <span>Envi­o</span>
                             <span>$12.00</span>
                         </div>
                         <div class="resumen-linea total">
