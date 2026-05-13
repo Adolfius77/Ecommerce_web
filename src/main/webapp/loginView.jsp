@@ -96,7 +96,7 @@
         };
 
         try {
-            const response = await fetch('resources/auth/login', {
+            const response = await fetch('resources/auth/Login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

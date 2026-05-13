@@ -4,10 +4,13 @@
  */
 package negocio.interfaces;
 
+import model.Usuario;
+
 /**
  *
  * @author USER
  */
 public interface IUsuarioBO {
     String autentificarGenerarToken(String correo, String contrasena);
+    void registrarUsuario(Usuario usuario )throws Exception; 
 }

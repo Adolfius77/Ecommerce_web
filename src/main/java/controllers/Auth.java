@@ -41,6 +41,20 @@ public Response login(Usuario credenciales){
     }
 }
     
-
-
+@POST
+    @Path("register")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response registrar(Usuario nuevoUsuario) {
+        try {
+            UsuarioBO.registrarUsuario(nuevoUsuario);
+            return Response.status(Response.Status.CREATED)
+                           .entity("{\"mensaje\": \"Usuario registrado con éxito\"}")
+                           .build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                           .entity("{\"error\": \"Error al registrar el usuario\"}")
+                           .build();
+        }
+    }
 }

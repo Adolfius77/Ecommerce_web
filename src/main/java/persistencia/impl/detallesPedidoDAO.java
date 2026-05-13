@@ -10,7 +10,7 @@ import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Filters.eq;
 import java.util.ArrayList;
 import java.util.List;
-import model.Usuario;
+
 import model.detallePedido;
 import org.bson.types.ObjectId;
 import persistencia.IDetallesPedidoDAO;
