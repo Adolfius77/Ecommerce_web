@@ -1,0 +1,199 @@
+/* Reseteo general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #1e2124;
+    color: #ffffff;
+}
+
+/* Contenedor principal - Flexbox para dividir pantalla */
+.layout-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- MENU LATERAL --- */
+.sidebar {
+    width: 250px;
+    background-color: #282b30;
+    border-right: 1px solid #36393e;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar nav {
+    margin-top: 20px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #b9bbbe;
+    text-decoration: none;
+    border-bottom: 1px solid #36393e;
+    transition: background-color 0.2s;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: #36393e;
+    color: #ffffff;
+}
+
+/* --- PANEL PRINCIPAL --- */
+.main-panel {
+    flex: 1;
+    /* Ocupa el resto del ancho */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- BARRA SUPERIOR --- */
+.topbar {
+    height: 60px;
+    background-color: #282b30;
+    border-bottom: 1px solid #36393e;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* Alinea a la derecha */
+    padding: 0 20px;
+}
+
+.topbar-links a {
+    color: #b9bbbe;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.topbar-links a:hover {
+    color: #ffffff;
+}
+
+.topbar-links i {
+    margin-right: 5px;
+}
+
+/* --- CONTENIDO --- */
+.content {
+    flex: 1;
+    /* Ocupa el espacio vertical disponible */
+    background-color: #1e2124;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* --- PIE DE PÁGINA --- */
+.footer {
+    height: 50px;
+    background-color: #282b30;
+    border-top: 1px solid #36393e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Centra el texto */
+}
+
+.footer p {
+    color: #b9bbbe;
+    font-size: 14px;
+}
+
+.content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+
+.equipo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(1000px, 1fr));
+    gap: 20px;
+    height: 20px;
+    justify-self: center;
+}
+
+.equipo-info {
+    background-color: #FFFFFF;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.equipo-info:hover {
+    transform: translateY(-5px);
+}
+
+.equipo-info h3 {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.equipo-info p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.info-dev {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tarjeta-desarrollador {
+    display: flex;
+    align-items: center;
+    background-color: #FBFBFB;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    padding: 15px 20px;
+    gap: 15px;
+    width: 100%;
+}
+
+.equipo-desarrollo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.info-proyecto {
+    grid-column: 1/ -1;
+    background-color: #F0F6FF;
+    border: 1px solid #D6E4F5;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+.info-proyecto h3 {
+    color: #0052CC; 
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-proyecto p {
+    color: #0052CC; 
+    font-size: 13px;
+    line-height: 1.5; 
+    margin: 0;
+}

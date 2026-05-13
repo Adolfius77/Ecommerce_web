@@ -1,0 +1,212 @@
+/* Reseteo general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #1e2124;
+    color: #ffffff;
+}
+
+/* Contenedor principal - Flexbox para dividir pantalla */
+.layout-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- MENU LATERAL --- */
+.sidebar {
+    width: 250px;
+    background-color: #282b30;
+    border-right: 1px solid #36393e;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar nav {
+    margin-top: 20px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #b9bbbe;
+    text-decoration: none;
+    border-bottom: 1px solid #36393e;
+    transition: background-color 0.2s;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: #36393e;
+    color: #ffffff;
+}
+
+/* --- PANEL PRINCIPAL --- */
+.main-panel {
+    flex: 1;
+    /* Ocupa el resto del ancho */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- BARRA SUPERIOR --- */
+.topbar {
+    height: 60px;
+    background-color: #282b30;
+    border-bottom: 1px solid #36393e;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* Alinea a la derecha */
+    padding: 0 20px;
+}
+
+.topbar-links a {
+    color: #b9bbbe;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.topbar-links a:hover {
+    color: #ffffff;
+}
+
+.topbar-links i {
+    margin-right: 5px;
+}
+
+/* --- CONTENIDO --- */
+.content {
+    flex: 1;
+    /* Ocupa el espacio vertical disponible */
+    background-color: #1e2124;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* --- PIE DE PÁGINA --- */
+.footer {
+    height: 50px;
+    background-color: #282b30;
+    border-top: 1px solid #36393e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Centra el texto */
+}
+
+.footer p {
+    color: #b9bbbe;
+    font-size: 14px;
+}
+
+.content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ .contenedor-login{
+    background-color: white;
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    border-radius: 10px;
+    border: 2px solid #1a73e8;
+    box-shadow: 0 8px 25px rgba(26, 115, 232, 0.2);
+    text-align: center;
+}
+.cabecera-login h2{
+    font-size: 25px;
+    color: #202124;
+    margin-bottom: 10px;
+}
+.cabecera-login p{
+    font-size: 20px;
+    color: #5f6368;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+.formulario-login{
+    text-align: left;
+}
+.campo-form{
+     margin-bottom: 20px;
+}
+.campo-form label{
+    display: block;
+    font-size: 15px;
+    color:#3c4043;
+    margin-bottom: 8px;
+    text-align: left;
+}
+.campo-form input{
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.boton-login{
+    text-align: center;
+}
+.pie-login p{
+    border-top: 1px solid #dadce0;
+    padding-top: 30px;
+}
+.boton-login button{
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    width: 100%;
+}
+.pie-login p{
+    font-size: 13px;
+    color: #5f6368;
+    margin-bottom: 15px;
+    text-align: center;
+    margin-top: 20px;
+}
+.btn-regresar{
+    text-align: center;
+}
+.btn-regresar button{
+    background-color: #dadce0;
+    color: #202124;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+.contrasena-olvidada p{
+    font-size: 13px;
+    color: #5f6368;
+    margin-bottom: 15px;
+    text-align: right;
+}
+.btn-regresar i {
+    margin-right: 7px;
+}
+
