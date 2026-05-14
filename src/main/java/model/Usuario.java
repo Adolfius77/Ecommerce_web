@@ -11,7 +11,10 @@ import org.bson.types.ObjectId;
  * @author USER
  */
 public class Usuario {
+
     private ObjectId _id;
+    private String nombre;
+    private String apellido;
     private String correo;
     private String contrasena;
     private String telefono;
@@ -21,8 +24,10 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(ObjectId _id, String correo, String contrasena, String telefono, String direccion, String rol) {
+    public Usuario(ObjectId _id, String nombre, String apellido, String correo, String contrasena, String telefono, String direccion, String rol) {
         this._id = _id;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.correo = correo;
         this.contrasena = contrasena;
         this.telefono = telefono;
@@ -36,6 +41,22 @@ public class Usuario {
 
     public void setId(ObjectId _id) {
         this._id = _id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getCorreo() {
@@ -77,9 +98,5 @@ public class Usuario {
     public void setRol(String rol) {
         this.rol = rol;
     }
-    
-    
-    
+
 }
-
-

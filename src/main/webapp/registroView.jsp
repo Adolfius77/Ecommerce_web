@@ -49,7 +49,7 @@
                             <h2>Crea tu cuenta</h2>
                             <p>Completa los datos para registrarte en el sistema.</p>
                         </div>
-                        <form id="registroForm" class="registro-form">
+                        <form  class="registro-form" action="$${pageContext.request.contextPath}/RegistroServlet" method="POST">
                             <div class="form-grid">
                                 <div class="campo-form">
                                     <label for="nombre">Nombre</label>
@@ -94,47 +94,7 @@
                         </form>
                     </div>
                 </main>
-                <script>
-                    // 1. Corregimos el ID (quitamos el espacio extra)
-                    document.getElementById('registroForm').addEventListener('submit', async function (event) {
-                        event.preventDefault();
-
-                        // 2. Concatenamos nombre y apellido para el campo 'nombreCompleto' del modelo
-                        const nombre = document.getElementById('nombre').value;
-                        const apellido = document.getElementById('apellido').value;
-
-                        const datos = {
-                            nombreCompleto: nombre + " " + apellido,
-                            correo: document.getElementById('email').value, // Cambiado 'correo' por 'email'
-                            contrasena: document.getElementById('password').value,
-                            rol: "CLIENTE"
-                        };
-
-                        try {
-                            const response = await fetch('resources/auth/register', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify(datos)
-                            });
-
-                            // Intentamos parsear la respuesta solo si el servidor mandó algo
-                            const resultado = await response.json();
-
-                            if (response.ok) {
-                                alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
-                                window.location.href = 'loginView.jsp';
-                            } else {
-                                alert('Error: ' + (resultado.mensaje || 'Error desconocido'));
-                            }
-
-                        } catch (error) {
-                            console.error('Error en la petición:', error);
-                            alert('No se pudo conectar con el servidor.');
-                        }
-                    });
-                </script>
+              
                 <!-- Pie de pagina -->
                 <footer class="footer">
                     <p>Aplicaciones Web – Unidad 4</p>
