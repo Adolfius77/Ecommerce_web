@@ -38,7 +38,7 @@
                 <div class="page-header">
                     <div>
                         <h2>Inventario de productos</h2>
-                        <p>Crear, editar y eliminar productos. Los datos de la tabla son de ejemplo hasta conectar el backend.</p>
+                        <p>Crear, editar y eliminar productos. </p>
                     </div>
                     <div class="toolbar">
                         <button type="button" class="btn-primario"><i class="fa-solid fa-plus"></i> Nuevo producto</button>
@@ -47,7 +47,7 @@
 
                 <div class="panel-card">
                     <h3>Alta o edición de producto</h3>
-                    <p style="color:#5f6368;font-size:14px;margin-bottom:16px;">Campos alineados con el modelo Producto (nombre, precio, descripción, imagen, stock, categoría).</p>
+                    <p style="color:#5f6368;font-size:14px;margin-bottom:16px;">Campos alineados con el modelo Producto</p>
                     <div class="form-grid-panel">
                         <div class="campo-form-panel">
                             <label for="prodNombre">Nombre</label>

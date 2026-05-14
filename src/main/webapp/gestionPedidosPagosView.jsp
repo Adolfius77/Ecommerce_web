@@ -38,7 +38,7 @@
                 <div class="page-header">
                     <div>
                         <h2>Pedidos y pagos</h2>
-                        <p>Consulta las compras de los clientes y actualiza el estado del pedido (Pendiente, Enviado, Entregado). La columna «Pago» es placeholder hasta definir el modelo de pagos.</p>
+                        <p>Consulta las compras de los clientes y actualiza el estado del pedido </p>
                     </div>
                 </div>
 

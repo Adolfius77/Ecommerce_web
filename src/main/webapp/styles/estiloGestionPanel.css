@@ -106,7 +106,7 @@ body {
     font-size: 14px;
 }
 
-/* Cabecera de página y barra de herramientas */
+
 .page-header {
     display: flex;
     flex-wrap: wrap;
@@ -191,7 +191,7 @@ body {
     background-color: #f1f3f4;
 }
 
-/* Tablas de datos */
+
 .table-wrap {
     overflow-x: auto;
     border: 1px solid #e0e0e0;
