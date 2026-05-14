@@ -8,6 +8,7 @@ import Config.MongoClientProvider;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.UpdateResult;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ public class UsuarioDAO implements IUsuarioDAO {
                 entidad.setId(new ObjectId());
             }
             entidad.setRol(rol);
+            entidad.setActivo(true);
             col.insertOne(entidad);
             return entidad.getId();
         } catch (MongoException e) {
@@ -106,6 +108,34 @@ public class UsuarioDAO implements IUsuarioDAO {
 
         } catch (MongoException e) {
             throw new MongoException("error al buscar por nombre" + e);
+        }
+    }
+
+    @Override
+    public List<Usuario> listarTodos() {
+        try {
+            return col.find().into(new ArrayList<>());
+        } catch (MongoException e) {
+            throw new MongoException("error al listar usuarios: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public Optional<Usuario> buscarPorCorreo(String correo) {
+        try {
+            return Optional.ofNullable(col.find(Filters.eq("correo", correo)).first());
+        } catch (MongoException e) {
+            throw new MongoException("error al buscar usuario por correo: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean actualizarActivo(ObjectId id, boolean activo) {
+        try {
+            UpdateResult r = col.updateOne(Filters.eq("_id", id), Updates.set("activo", activo));
+            return r.getModifiedCount() > 0;
+        } catch (MongoException e) {
+            throw new MongoException("error al actualizar estado activo del usuario: " + e.getMessage());
         }
     }
 }
