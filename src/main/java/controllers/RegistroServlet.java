@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Usuario;
+import negocio.UsuarioBO;
 import negocio.interfaces.IUsuarioBO;
 
 /**
@@ -19,12 +20,15 @@ import negocio.interfaces.IUsuarioBO;
  */
 @WebServlet(name = "RegistroServlet", urlPatterns = {"/Registro"})
 public class RegistroServlet extends HttpServlet {
-
     private IUsuarioBO usuarioBo;
 
-    public RegistroServlet(IUsuarioBO usuarioBo) {
-        this.usuarioBo = usuarioBo;
+    
+    public RegistroServlet() {
+        this.usuarioBo = new UsuarioBO();
     }
+    
+
+    
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,7 +42,7 @@ public class RegistroServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
-        String correo = request.getParameter("correo");
+        String correo = request.getParameter("email");
         String telefono = request.getParameter("telefono");
         String password = request.getParameter("password");
         String confirmar = request.getParameter("confirmar");
@@ -52,14 +56,14 @@ public class RegistroServlet extends HttpServlet {
         Usuario nuevoUsuario = new Usuario();
         nuevoUsuario.setNombre(nombre.trim() + " " + (apellido != null ? apellido.trim() : ""));
         nuevoUsuario.setCorreo(correo.trim());
-        nuevoUsuario.setContrasena(correo);
+        nuevoUsuario.setContrasena(password);
         nuevoUsuario.setTelefono(telefono);
         nuevoUsuario.setDireccion(direccion);
         nuevoUsuario.setRol("CLIENTE");
         
         try {
             usuarioBo.registrarUsuario(nuevoUsuario);
-            response.sendRedirect(request.getContentType() + "/LoginView.jsp?registrado=true");
+            response.sendRedirect(request.getContextPath()+ "/loginView.jsp?registrado=true");
             
         } catch (Exception e) {
             request.setAttribute("error", "Error al registrar el usuario: " + e.getMessage());
