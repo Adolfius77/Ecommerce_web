@@ -15,20 +15,21 @@ import util.JWTProvider;
  *
  * @author USER
  */
-public class UsuarioBO implements IUsuarioBO{
-    private  IUsuarioDAO usuarioDAO;
+public class UsuarioBO implements IUsuarioBO {
 
-    public UsuarioBO(IUsuarioDAO usuarioDAO) {
-        this.usuarioDAO = new UsuarioDAO(MongoClientProvider.INSTANCE.getcCollection("usuario",Usuario.class));
+    private IUsuarioDAO usuarioDAO;
+
+    public UsuarioBO() {
+        this.usuarioDAO = new UsuarioDAO(MongoClientProvider.INSTANCE.getcCollection("usuario", Usuario.class));
     }
-    
+
     @Override
     public String autentificarGenerarToken(String correo, String contrasena) {
         Usuario usuarioValido = usuarioDAO.autentificar(correo, contrasena, "CLIENTE");
-        
-        if(usuarioValido != null){
+
+        if (usuarioValido != null) {
             return JWTProvider.generarTokem(usuarioValido.getCorreo(), usuarioValido.getRol());
-            
+
         }
         return null;
     }
@@ -38,5 +39,5 @@ public class UsuarioBO implements IUsuarioBO{
         usuario.setRol("CLIENTE");
         usuarioDAO.registrarUsuario(usuario, "CLIENTE");
     }
-    
+
 }
