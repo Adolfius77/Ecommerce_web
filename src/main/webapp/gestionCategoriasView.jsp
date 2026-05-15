@@ -38,7 +38,7 @@
                 <div class="page-header">
                     <div>
                         <h2>Gestión de categorías</h2>
-                        <p>Organiza el catálogo. Ejemplo de datos hasta exista colección o API de categorías.</p>
+                        <p>Organiza el catálogo. </p>
                     </div>
                     <div class="toolbar">
                         <button type="button" class="btn-primario"><i class="fa-solid fa-plus"></i> Nueva categoría</button>

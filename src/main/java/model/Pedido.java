@@ -18,6 +18,9 @@ public class Pedido {
     private Date fecha;
     private estadoPedido estado;
     private List<detallePedido> productos;
+    private ObjectId idUsuario;
+    private Double total;
+    private String estadoPago;
 
     public Pedido() {
     }
@@ -69,7 +72,29 @@ public class Pedido {
     public void setProductos(List<detallePedido> productos) {
         this.productos = productos;
     }
-    
-    
-    
+
+    public ObjectId getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(ObjectId idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public String getEstadoPago() {
+        return estadoPago;
+    }
+
+    public void setEstadoPago(String estadoPago) {
+        this.estadoPago = estadoPago;
+    }
+
 }

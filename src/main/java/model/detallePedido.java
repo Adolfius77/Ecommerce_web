@@ -4,11 +4,18 @@
  */
 package model;
 
+import org.bson.codecs.pojo.annotations.BsonProperty;
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author USER
  */
 public class detallePedido {
+
+    @BsonProperty("_pedidoId")
+    private ObjectId pedidoId;
+
     private String nombreProducto;
     private int cantidad;
     private double precioUnitario;
@@ -24,6 +31,14 @@ public class detallePedido {
         this.precioUnitario = precioUnitario;
         this.subtotal = subtotal;
         this.total = total;
+    }
+
+    public ObjectId getPedidoId() {
+        return pedidoId;
+    }
+
+    public void setPedidoId(ObjectId pedidoId) {
+        this.pedidoId = pedidoId;
     }
 
     public String getNombreProducto() {
