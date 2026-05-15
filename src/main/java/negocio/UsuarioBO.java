@@ -40,4 +40,24 @@ public class UsuarioBO implements IUsuarioBO {
         usuarioDAO.registrarUsuario(usuario, "CLIENTE");
     }
 
+    @Override
+    public Usuario actualizarUsuario(Usuario usuario) throws Exception {
+        boolean exito = usuarioDAO.actualizar(usuario);
+        if (usuario.getNombre() == null || usuario.getNombre().isEmpty()) {
+            throw new Exception("el nombre es obligatorio");
+        }
+        if (usuario.getTelefono() == null || usuario.getTelefono().isEmpty()) {
+            throw new Exception("el telefono es obligatorio");
+        }
+        if (usuario.getContrasena() == null || usuario.getContrasena().isEmpty()) {
+            throw new Exception("la contrasena es obligatorio");
+
+        }
+
+        if (!exito) {
+            throw new Exception("No se puede actualizar el perfil carnal");
+        }
+        return usuario;
+    }
+
 }
