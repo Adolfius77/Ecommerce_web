@@ -21,7 +21,7 @@ public class ProductoBO implements IProductoBO {
 
     private final IProductoDAO productoDAO;
 
-    public ProductoBO(IProductoDAO productoDAO) {
+    public ProductoBO() {
         this.productoDAO = new ProductoDAO(MongoClientProvider.INSTANCE.getcCollection("producto", Producto.class));
     }
 
