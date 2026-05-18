@@ -41,7 +41,7 @@ public class detallesPedidoDAO implements IDetallesPedidoDAO {
         try {
             return col.find(eq("_pedidoId", _pedidoId)).into(new ArrayList<>());
         } catch (Exception e) {
-            throw new MongoException("error al obtener la resena: " + e.getMessage());
+            throw new MongoException("error al obtener detalles del pedido: " + e.getMessage());
         }
     }
 
