@@ -5,8 +5,11 @@
 package negocio;
 
 import Config.MongoClientProvider;
+import java.util.List;
+import java.util.Optional;
 import model.Usuario;
 import negocio.interfaces.IUsuarioBO;
+import org.bson.types.ObjectId;
 import persistencia.IUsuarioDAO;
 import persistencia.impl.UsuarioDAO;
 import util.JWTProvider;
