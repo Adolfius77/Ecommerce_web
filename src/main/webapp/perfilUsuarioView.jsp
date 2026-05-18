@@ -37,25 +37,36 @@
                         <h2>Mi perfil</h2>
                         <p>Actualiza tu nombre para mostrar, dirección y contraseña. El backend puede mapear solo correo, teléfono y dirección según el modelo Usuario actual.</p>
                     </div>
-                    <form class="registro-form" action="#" method="post">
+                    <%-- Mostrar mensajes de exito o error --%>
+                    <% if (request.getAttribute("mensaje") != null) { %>
+                        <div style="background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 12px; border-radius: 4px; margin-bottom: 15px;">
+                            <i class="fas fa-check-circle"></i> <%= request.getAttribute("mensaje") %>
+                        </div>
+                    <% } %>
+                    <% if (request.getAttribute("error") != null) { %>
+                        <div style="background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 12px; border-radius: 4px; margin-bottom: 15px;">
+                            <i class="fas fa-exclamation-circle"></i> <%= request.getAttribute("error") %>
+                        </div>
+                    <% } %>
+                    <form class="registro-form" action="${pageContext.request.contextPath}/Perfil" method="post">
                         <div class="form-grid">
                             <div class="campo-form">
                                 <label for="nombrePerfil">Nombre para mostrar</label>
-                                <input type="text" id="nombrePerfil" name="nombrePerfil" placeholder="Tu nombre">
+                                <input type="text" id="nombrePerfil" name="nombrePerfil" value="${usuarioPerfil.nombre}">
                             </div>
                             <div class="campo-form">
                                 <label for="correoPerfil">Correo electrónico</label>
-                                <input type="email" id="correoPerfil" name="correoPerfil" value="cliente@ejemplo.com" readonly>
+                                <input type="email" id="correoPerfil" name="correoPerfil" value="${usuarioPerfil.correo}" readonly>
                             </div>
                         </div>
                         <div class="form-grid">
                             <div class="campo-form">
                                 <label for="telefonoPerfil">Teléfono</label>
-                                <input type="tel" id="telefonoPerfil" name="telefonoPerfil" placeholder="Teléfono de contacto">
+                                <input type="tel" id="telefonoPerfil" name="telefonoPerfil" value="${usuarioPerfil.telefono}">
                             </div>
                             <div class="campo-form">
                                 <label for="direccionPerfil">Dirección</label>
-                                <input type="text" id="direccionPerfil" name="direccionPerfil" placeholder="Calle, número, ciudad">
+                                <input type="text" id="direccionPerfil" name="direccionPerfil" value="${usuarioPerfil.direccion}">
                             </div>
                         </div>
                         <hr style="border:none;border-top:1px solid #e0e0e0;margin:20px 0;">

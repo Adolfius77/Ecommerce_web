@@ -63,4 +63,9 @@ public class UsuarioBO implements IUsuarioBO {
         return usuario;
     }
 
+    @Override
+    public Optional<Usuario> obtenerUsuarioPorCorreo(String correo) {
+        return usuarioDAO.buscarPorCorreo(correo);
+    }
+
 }

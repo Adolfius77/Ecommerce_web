@@ -4,6 +4,7 @@
  */
 package negocio.interfaces;
 
+import java.util.Optional;
 import model.Usuario;
 
 /**
@@ -14,4 +15,5 @@ public interface IUsuarioBO {
     String autentificarGenerarToken(String correo, String contrasena);
     void registrarUsuario(Usuario usuario )throws Exception; 
     Usuario actualizarUsuario(Usuario usuario)throws Exception;
+    Optional<Usuario> obtenerUsuarioPorCorreo(String correo);
 }
