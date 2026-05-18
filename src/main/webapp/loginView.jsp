@@ -49,7 +49,7 @@
                             <h2>Bienvenido al sistema</h2>
                             <p>Ingrese sus credenciales</p>
                         </div>
-                        <form id = "loginForm" class = "formulario-login">
+                        <form id = "loginForm" class = "formulario-login" action="${pageContext.request.contextPath}/login" method="POST">
                             <input type="hidden" name="accion" value="loginAdmin">
                             <div class="campo-form">
                                 <label for="email">Correo electronico:</label>
@@ -76,7 +76,7 @@
                         </form>
                     </div>
                 </main>
-
+               
                 <!-- Pie de pagina -->
                 <footer class="footer">
                     <p>Aplicaciones Web – Unidad 4</p>
@@ -84,45 +84,7 @@
 
             </div>
         </div>
-        <script>
-            document.getElementById('loginForm').addEventListener('submit', async function(event) {
-        
-        event.preventDefault();
 
-        const correoInput = document.getElementById('email').value;
-        const contrasenaInput = document.getElementById('password').value;
-
-        const credenciales = {
-            correo: correoInput,
-            contrasena: contrasenaInput
-        };
-
-        try {
-            const response = await fetch('resources/auth/Login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(credenciales)
-            });
-
-            if (response.ok) {
-                const token = await response.text();
-                
-                localStorage.setItem('jwtToken', token); 
-                
-                alert('¡Inicio de sesión exitoso!');
-                
-                window.location.href = 'catalogoView.jsp'; 
-            } else {
-                alert('Correo o contraseña incorrectos. Por favor, intenta de nuevo.');
-            }
-        } catch (error) {
-            console.error('Error de red o de servidor:', error);
-            alert('Ocurrió un error al intentar conectarse al servidor.');
-        }
-    });
-        </script>
 
 
     </body>

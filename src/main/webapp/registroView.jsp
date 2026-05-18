@@ -49,7 +49,7 @@
                             <h2>Crea tu cuenta</h2>
                             <p>Completa los datos para registrarte en el sistema.</p>
                         </div>
-                        <form  class="registro-form" action="$${pageContext.request.contextPath}/RegistroServlet" method="POST">
+                        <form  class="registro-form" action="${pageContext.request.contextPath}/Registro" method="POST">
                             <div class="form-grid">
                                 <div class="campo-form">
                                     <label for="nombre">Nombre</label>
@@ -94,7 +94,7 @@
                         </form>
                     </div>
                 </main>
-              
+
                 <!-- Pie de pagina -->
                 <footer class="footer">
                     <p>Aplicaciones Web – Unidad 4</p>
