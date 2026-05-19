@@ -18,5 +18,8 @@ public interface IProductoDAO {
     void crearProducto(Producto producto);
     void actualizarProducto(Producto producto);
     void eliminar(ObjectId _id);
-    
+    List<Producto> buscarPorNombre(String nombre);
+    List<Producto> buscarPorCategoria(String categoria);
+    List<Producto> buscarPorRangoPrecio(Double precioMin, Double precioMax);
+    List<Producto> filtrar(String nombre, String categoria, Double precioMin, Double precioMax);
 }

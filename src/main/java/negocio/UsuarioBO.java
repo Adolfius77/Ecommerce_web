@@ -67,5 +67,17 @@ public class UsuarioBO implements IUsuarioBO {
     public Optional<Usuario> obtenerUsuarioPorCorreo(String correo) {
         return usuarioDAO.buscarPorCorreo(correo);
     }
+    
+    public Optional<Usuario> obtenerPorCorreo(String correo) {
+        return usuarioDAO.buscarPorCorreo(correo);
+    }
+    
+    public List<Usuario> listarTodosUsuarios() throws Exception {
+        return usuarioDAO.listarTodos();
+    }
+    
+    public Optional<Usuario> obtenerUsuarioPorId(ObjectId id) throws Exception {
+        return usuarioDAO.encontrarPorId(id);
+    }
 
 }

@@ -6,6 +6,7 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Optional;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -46,7 +47,33 @@ public class loginServlet extends HttpServlet {
           HttpSession sesion = request.getSession();
           sesion.setAttribute("token", token);
           sesion.setAttribute("usuario", correo);
-          
+           
+        
+          Optional<model.Usuario> usuarioOpt = usuarioBo.obtenerUsuarioPorCorreo(correo);
+          if (usuarioOpt.isPresent()) {
+              model.Usuario usuario = usuarioOpt.get();
+              String rol = usuario.getRol();
+              sesion.setAttribute("rol", rol);
+              
+              System.out.println("[LOGIN DEBUG] Correo: " + correo);
+              System.out.println("[LOGIN DEBUG] Rol obtenido: " + rol);
+              System.out.println("[LOGIN DEBUG] Es NULL? " + (rol == null));
+              
+              boolean esAdmin = "ADMIN".equals(rol);
+              sesion.setAttribute("esAdmin", esAdmin);
+              
+              System.out.println("[LOGIN DEBUG] esAdmin: " + esAdmin);
+               
+             
+              if (esAdmin) {
+           
+                  response.sendRedirect(request.getContextPath() + "/admin/dashboard");
+                  return;
+              }
+          } else {
+              System.out.println("[LOGIN DEBUG] Usuario NO encontrado en BD después de autenticacion");
+          }
+           
           response.sendRedirect(request.getContextPath() + "/index.jsp");
       }else{
           request.setAttribute("error", "correo o contrasena incorrectos");

@@ -16,6 +16,7 @@ import java.util.Optional;
 import model.Usuario;
 import org.bson.types.ObjectId;
 import persistencia.IUsuarioDAO;
+import util.PasswordUtil;
 
 /**
  *
@@ -47,11 +48,15 @@ public class UsuarioDAO implements IUsuarioDAO {
     @Override
     public Usuario autentificar(String correo, String password, String rol) {
         try {
-            return col.find(Filters.and(
+            Usuario usuario = col.find(Filters.and(
                     Filters.eq("correo", correo),
-                    Filters.eq("contrasena", password),
                     Filters.eq("rol", rol)
             )).first();
+            
+            if (usuario != null && usuario.isActivo() && PasswordUtil.verifyPassword(password, usuario.getContrasena())) {
+                return usuario;
+            }
+            return null;
         } catch (Exception e) {
             throw new MongoException("error al autentificar al: " + rol + e.getMessage());
         }

@@ -8,6 +8,11 @@ import Config.MongoClientProvider;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.regex;
+import static com.mongodb.client.model.Filters.gte;
+import static com.mongodb.client.model.Filters.lte;
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.or;
 import java.util.ArrayList;
 import java.util.List;
 import model.Producto;
@@ -69,6 +74,60 @@ public class ProductoDAO implements IProductoDAO {
             col.deleteOne(eq("_id", _id));
         } catch (Exception e) {
             throw new MongoException("error al borrar producto" + e.getMessage());
+        }
+    }
+
+    public List<Producto> buscarPorNombre(String nombre) {
+        try {
+            return col.find(regex("nombre", nombre, "i")).into(new ArrayList<>());
+        } catch (Exception e) {
+            throw new MongoException("error al buscar productos por nombre: " + e.getMessage());
+        }
+    }
+
+    public List<Producto> buscarPorCategoria(String categoria) {
+        try {
+            return col.find(eq("categoria", categoria)).into(new ArrayList<>());
+        } catch (Exception e) {
+            throw new MongoException("error al buscar productos por categoría: " + e.getMessage());
+        }
+    }
+
+    public List<Producto> buscarPorRangoPrecio(Double precioMin, Double precioMax) {
+        try {
+            return col.find(and(gte("precio", precioMin), lte("precio", precioMax))).into(new ArrayList<>());
+        } catch (Exception e) {
+            throw new MongoException("error al buscar productos por rango de precio: " + e.getMessage());
+        }
+    }
+
+    public List<Producto> filtrar(String nombre, String categoria, Double precioMin, Double precioMax) {
+        try {
+            List<org.bson.conversions.Bson> filters = new ArrayList<>();
+            
+            if (nombre != null && !nombre.trim().isEmpty()) {
+                filters.add(regex("nombre", nombre.trim(), "i"));
+            }
+            
+            if (categoria != null && !categoria.trim().isEmpty()) {
+                filters.add(eq("categoria", categoria.trim()));
+            }
+            
+            if (precioMin != null && precioMin >= 0) {
+                filters.add(gte("precio", precioMin));
+            }
+            
+            if (precioMax != null && precioMax >= 0) {
+                filters.add(lte("precio", precioMax));
+            }
+            
+            if (filters.isEmpty()) {
+                return obtenerProductos();
+            }
+            
+            return col.find(and(filters)).into(new ArrayList<>());
+        } catch (Exception e) {
+            throw new MongoException("error al filtrar productos: " + e.getMessage());
         }
     }
 

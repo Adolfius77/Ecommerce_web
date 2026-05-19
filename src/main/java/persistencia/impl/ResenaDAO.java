@@ -73,4 +73,16 @@ public class ResenaDAO implements IResenaDAO {
             throw new MongoException("error al eliminar reseña: " + e.getMessage());
         }
     }
+    
+    @Override
+    public boolean actualizar(reseña resena) {
+        try {
+            if (resena.getId() == null) {
+                throw new IllegalArgumentException("El id de la reseña no puede ser nulo");
+            }
+            return col.replaceOne(eq("_id", resena.getId()), resena).getModifiedCount() > 0;
+        } catch (MongoException e) {
+            throw new MongoException("error al actualizar reseña: " + e.getMessage());
+        }
+    }
 }

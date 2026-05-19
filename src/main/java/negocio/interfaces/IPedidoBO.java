@@ -27,4 +27,8 @@ public interface IPedidoBO {
     boolean cambiarEstadoPedido(ObjectId id, estadoPedido nuevoEstado) throws Exception;
 
     boolean actualizarPedido(Pedido pedido) throws Exception;
+    
+    void registrarPedido(Pedido pedido) throws Exception;
+    
+    List<Pedido> obtenerPedidosPorUsuario(ObjectId idUsuario) throws Exception;
 }

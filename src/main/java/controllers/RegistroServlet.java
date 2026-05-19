@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.Usuario;
 import negocio.UsuarioBO;
 import negocio.interfaces.IUsuarioBO;
+import util.PasswordUtil;
 
 /**
  *
@@ -56,7 +57,7 @@ public class RegistroServlet extends HttpServlet {
         Usuario nuevoUsuario = new Usuario();
         nuevoUsuario.setNombre(nombre.trim() + " " + (apellido != null ? apellido.trim() : ""));
         nuevoUsuario.setCorreo(correo.trim());
-        nuevoUsuario.setContrasena(password);
+        nuevoUsuario.setContrasena(PasswordUtil.hashPassword(password));
         nuevoUsuario.setTelefono(telefono);
         nuevoUsuario.setDireccion(direccion);
         nuevoUsuario.setRol("CLIENTE");

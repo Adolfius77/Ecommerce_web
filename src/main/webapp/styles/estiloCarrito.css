@@ -242,6 +242,7 @@ body {
     font-size: 14px;
     cursor: pointer;
     text-align: center;
+    margin-top: 10px;
 }
 
 .btn-secundario {
@@ -259,4 +260,7 @@ body {
     .carrito-grid {
         grid-template-columns: 1fr;
     }
+}
+.carrito-vacio{
+    margin-bottom: 20px;
 }

@@ -32,8 +32,46 @@ public class catalogoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            List<Producto> listaProductos = productoBO.listarProductos();
+            String nombre = request.getParameter("nombre");
+            String categoria = request.getParameter("categoria");
+            String precioMinStr = request.getParameter("precioMin");
+            String precioMaxStr = request.getParameter("precioMax");
+            
+            List<Producto> listaProductos;
+            
+            if ((nombre != null && !nombre.trim().isEmpty()) || 
+                (categoria != null && !categoria.trim().isEmpty()) ||
+                (precioMinStr != null && !precioMinStr.isEmpty()) ||
+                (precioMaxStr != null && !precioMaxStr.isEmpty())) {
+                
+                Double precioMin = null;
+                Double precioMax = null;
+                
+                if (precioMinStr != null && !precioMinStr.isEmpty()) {
+                    try {
+                        precioMin = Double.parseDouble(precioMinStr);
+                    } catch (NumberFormatException e) {
+                      
+                    }
+                }
+                
+                if (precioMaxStr != null && !precioMaxStr.isEmpty()) {
+                    try {
+                        precioMax = Double.parseDouble(precioMaxStr);
+                    } catch (NumberFormatException e) {
+                      
+                    }
+                }
+                
+                listaProductos = productoBO.filtrarProductos(nombre, categoria, precioMin, precioMax);
+                request.setAttribute("filtroAplicado", true);
+            } else {
+                listaProductos = productoBO.listarProductos();
+            }
+            
             request.setAttribute("productos", listaProductos);
+            request.setAttribute("nombreBusqueda", nombre != null ? nombre : "");
+            request.setAttribute("categoriaBusqueda", categoria != null ? categoria : "");
             request.getRequestDispatcher("/catalogoView.jsp").forward(request, response);
             
         } catch (Exception e) {

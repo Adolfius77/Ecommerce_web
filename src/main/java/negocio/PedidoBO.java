@@ -26,6 +26,12 @@ public class PedidoBO implements IPedidoBO {
     private final IPedidoDAO pedidoDAO;
     private final IDetallesPedidoDAO detallesPedidoDAO;
 
+    public PedidoBO() {
+        this.pedidoDAO = new PedidoDAO(MongoClientProvider.INSTANCE.getcCollection("pedido", Pedido.class));
+        this.detallesPedidoDAO = new detallesPedidoDAO(
+                MongoClientProvider.INSTANCE.getcCollection("detalle_pedido", detallePedido.class));
+    }
+
     public PedidoBO(IPedidoDAO pedidoDAO, IDetallesPedidoDAO detallesPedidoDAO) {
         this.pedidoDAO = new PedidoDAO(MongoClientProvider.INSTANCE.getcCollection("pedido", Pedido.class));
         this.detallesPedidoDAO = new detallesPedidoDAO(
@@ -100,5 +106,31 @@ public class PedidoBO implements IPedidoBO {
             throw new IllegalArgumentException("El pedido debe tener id para actualizar");
         }
         return pedidoDAO.actualizar(pedido);
+    }
+    
+    public void registrarPedido(Pedido pedido) throws Exception {
+        if (pedido == null) {
+            throw new IllegalArgumentException("El pedido no puede ser nulo");
+        }
+        if (pedido.getProductos() == null || pedido.getProductos().isEmpty()) {
+            throw new Exception("El pedido debe tener al menos un detalle");
+        }
+        if (pedido.getFecha() == null) {
+            pedido.setFecha(new Date());
+        }
+        if (pedido.getEstado() == null) {
+            pedido.setEstado(estadoPedido.PENDIENTE);
+        }
+        if (pedido.getEstadoPago() == null || pedido.getEstadoPago().trim().isEmpty()) {
+            pedido.setEstadoPago("POR_CONFIRMAR");
+        }
+        pedidoDAO.crear(pedido);
+    }
+    
+    public List<Pedido> obtenerPedidosPorUsuario(ObjectId idUsuario) throws Exception {
+        if (idUsuario == null) {
+            throw new IllegalArgumentException("El id de usuario es obligatorio");
+        }
+        return pedidoDAO.listarPorUsuario(idUsuario);
     }
 }

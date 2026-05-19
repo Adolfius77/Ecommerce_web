@@ -21,6 +21,10 @@ public class CategoriaBO implements ICategoriaBO {
 
     private final ICategoriaDAO categoriaDAO;
 
+    public CategoriaBO() {
+        this.categoriaDAO = new CategoriaDAO(MongoClientProvider.INSTANCE.getcCollection("categoria", Categoria.class));
+    }
+
     public CategoriaBO(ICategoriaDAO categoriaDAO) {
         this.categoriaDAO = new CategoriaDAO(MongoClientProvider.INSTANCE.getcCollection("categoria", Categoria.class));
     }
@@ -65,5 +69,18 @@ public class CategoriaBO implements ICategoriaBO {
         if (categoria == null || categoria.getNombre() == null || categoria.getNombre().trim().isEmpty()) {
             throw new Exception("El nombre de la categoría es obligatorio");
         }
+    }
+    
+    @Override
+    public boolean crearCategoria(Categoria categoria) throws Exception {
+        if (categoria == null) {
+            throw new IllegalArgumentException("La categoría no puede ser nula");
+        }
+        validarNombre(categoria);
+        if (categoria.getId() == null) {
+            categoria.setId(new ObjectId());
+        }
+        categoriaDAO.crear(categoria);
+        return true;
     }
 }

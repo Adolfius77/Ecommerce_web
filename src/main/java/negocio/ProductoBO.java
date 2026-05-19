@@ -101,4 +101,35 @@ public class ProductoBO implements IProductoBO {
             }
         }
     }
+    
+    public List<Producto> buscarPorNombre(String nombre) throws Exception {
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre no puede estar vacío");
+        }
+        return productoDAO.buscarPorNombre(nombre.trim());
+    }
+    
+    public List<Producto> buscarPorCategoria(String categoria) throws Exception {
+        if (categoria == null || categoria.trim().isEmpty()) {
+            throw new IllegalArgumentException("La categoría no puede estar vacía");
+        }
+        return productoDAO.buscarPorCategoria(categoria.trim());
+    }
+    
+    public List<Producto> buscarPorRangoPrecio(Double precioMin, Double precioMax) throws Exception {
+        if (precioMin == null || precioMax == null) {
+            throw new IllegalArgumentException("Los precios no pueden ser nulos");
+        }
+        if (precioMin < 0 || precioMax < 0) {
+            throw new IllegalArgumentException("Los precios no pueden ser negativos");
+        }
+        if (precioMin > precioMax) {
+            throw new IllegalArgumentException("El precio mínimo no puede ser mayor que el máximo");
+        }
+        return productoDAO.buscarPorRangoPrecio(precioMin, precioMax);
+    }
+    
+    public List<Producto> filtrarProductos(String nombre, String categoria, Double precioMin, Double precioMax) throws Exception {
+        return productoDAO.filtrar(nombre, categoria, precioMin, precioMax);
+    }
 }

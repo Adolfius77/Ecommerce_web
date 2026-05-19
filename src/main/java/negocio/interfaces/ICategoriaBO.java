@@ -24,4 +24,6 @@ public interface ICategoriaBO {
     boolean actualizarCategoria(Categoria categoria) throws Exception;
 
     boolean eliminarCategoria(ObjectId id) throws Exception;
+    
+    boolean crearCategoria(Categoria categoria) throws Exception;
 }

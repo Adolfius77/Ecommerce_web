@@ -20,11 +20,10 @@
             <aside class="sidebar">
                 <nav>
                     <ul>
-                        <li><a href="index.jsp" class="active"><i class="fa-solid fa-house"></i> Inicio</a></li>
-                        <li><a href="catalogoView.jsp"><i class="fa-solid fa-box-open"></i> Catálogo de productos</a></li>
-                        <li><a href="carritoView.jsp"><i class="fa-solid fa-shopping-cart"></i> Carrito de compras</a></li>
-                        <li><a href="misPedidosView.jsp"><i class="fa-solid fa-clock-rotate-left"></i> Mis pedidos</a></li>
-                        <li><a href="gestionProductosView.jsp"><i class="fa-solid fa-screwdriver-wrench"></i> Administración</a></li>
+                        <li><a href="index.jsp"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                        <li><a href="${pageContext.request.contextPath}/catalogo"><i class="fa-solid fa-box-open"></i> Catálogo de productos</a></li>
+                        <li><a href="${pageContext.request.contextPath}/carrito"><i class="fa-solid fa-shopping-cart"></i> Carrito de compras</a></li>
+                        <li><a href="${pageContext.request.contextPath}/misPedidos" class="active"><i class="fa-solid fa-clock-rotate-left"></i> Mis pedidos</a></li>
                         <li><a href="${pageContext.request.contextPath}/Perfil"><i class="fa-solid fa-user"></i> Mi perfil</a></li>
                         <li><a href="loginView.jsp"><i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión</a></li>
                     </ul>
@@ -37,8 +36,9 @@
                 <!-- Barra Superior -->
                 <header class="topbar">
                     <div class="topbar-links">
-                        <a href="perfilUsuarioView.jsp"><i class="fas fa-user"></i> Perfil</a>
-                        <a href="${pageContext.request.contextPath}/Logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>                </div>
+                        <a href="${pageContext.request.contextPath}/Perfil"><i class="fas fa-user"></i> Perfil</a>
+                        <a href="${pageContext.request.contextPath}/Logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>               
+                    </div>
                 </header>
 
                 <!-- Contenido -->
@@ -93,6 +93,6 @@
 
             </div>
         </div>
-             
+
     </body>
 </html>

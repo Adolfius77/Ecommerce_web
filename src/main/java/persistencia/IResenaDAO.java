@@ -23,4 +23,6 @@ public interface IResenaDAO {
     Optional<reseña> obtenerPorId(ObjectId id);
 
     boolean eliminarPorId(ObjectId id);
+    
+    boolean actualizar(reseña resena);
 }

@@ -16,4 +16,6 @@ public interface IUsuarioBO {
     void registrarUsuario(Usuario usuario )throws Exception; 
     Usuario actualizarUsuario(Usuario usuario)throws Exception;
     Optional<Usuario> obtenerUsuarioPorCorreo(String correo);
+    java.util.List<Usuario> listarTodosUsuarios() throws Exception;
+    Optional<Usuario> obtenerUsuarioPorId(org.bson.types.ObjectId id) throws Exception;
 }

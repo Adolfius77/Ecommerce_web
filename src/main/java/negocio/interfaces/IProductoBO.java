@@ -26,4 +26,12 @@ public interface IProductoBO {
     boolean eliminarProducto(ObjectId id) throws Exception;
 
     boolean hayStockDisponible(ObjectId id, int cantidad) throws Exception;
+    
+    List<Producto> buscarPorNombre(String nombre) throws Exception;
+    
+    List<Producto> buscarPorCategoria(String categoria) throws Exception;
+    
+    List<Producto> buscarPorRangoPrecio(Double precioMin, Double precioMax) throws Exception;
+    
+    List<Producto> filtrarProductos(String nombre, String categoria, Double precioMin, Double precioMax) throws Exception;
 }

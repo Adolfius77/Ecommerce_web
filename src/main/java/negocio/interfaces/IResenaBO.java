@@ -19,4 +19,8 @@ public interface IResenaBO {
     List<reseña> listarPorProducto(ObjectId productoId);
 
     boolean eliminarResena(ObjectId id) throws Exception;
+    
+    java.util.Optional<reseña> obtenerResena(ObjectId id) throws Exception;
+    
+    boolean actualizarResena(reseña resena) throws Exception;
 }

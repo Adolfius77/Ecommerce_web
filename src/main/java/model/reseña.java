@@ -18,6 +18,7 @@ public class reseña {
     private double calificacion;
     private String comentario;
     private Date fecha;
+    private boolean aprobada = false;
 
     public reseña() {
     }
@@ -29,6 +30,7 @@ public class reseña {
         this.calificacion = calificacion;
         this.comentario = comentario;
         this.fecha = fecha;
+        this.aprobada = false;
     }
 
     public ObjectId getId() {
@@ -79,5 +81,11 @@ public class reseña {
         this.fecha = fecha;
     }
     
+    public boolean isAprobada() {
+        return aprobada;
+    }
     
+    public void setAprobada(boolean aprobada) {
+        this.aprobada = aprobada;
+    }
 }

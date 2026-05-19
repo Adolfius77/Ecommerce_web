@@ -16,6 +16,7 @@ import java.util.Optional;
 import model.Usuario;
 import negocio.UsuarioBO;
 import negocio.interfaces.IUsuarioBO;
+import util.PasswordUtil;
 
 /**
  *
@@ -76,14 +77,14 @@ public class PerfilServlet extends HttpServlet {
             usuario.setDireccion(direcion);
             
             if(paswordActual != null && !paswordActual.trim().isEmpty()){
-                if(!usuario.getContrasena().equals(paswordActual)){
+                if(!PasswordUtil.verifyPassword(paswordActual, usuario.getContrasena())){
                     request.setAttribute("error", "la contrasena actual es incorrecta");
                     request.setAttribute("usuarioPerfil",usuario);
                     request.getRequestDispatcher("/perfilUsuarioView.jsp").forward(request, response);
                     return;
                 }
                 if(paswordNueva != null && paswordNueva.equals(paswordConfirmar) && !paswordNueva.trim().isEmpty()){
-                    usuario.setContrasena(paswordNueva);
+                    usuario.setContrasena(PasswordUtil.hashPassword(paswordNueva));
                 }else{
                     request.setAttribute("error", "la nueva contrasena no coiciden o estan  vacias");
                     request.setAttribute("usuarioPerfil", usuario);
