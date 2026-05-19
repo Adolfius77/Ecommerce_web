@@ -59,7 +59,7 @@ public class loginServlet extends HttpServlet {
               System.out.println("[LOGIN DEBUG] Rol obtenido: " + rol);
               System.out.println("[LOGIN DEBUG] Es NULL? " + (rol == null));
               
-              boolean esAdmin = "ADMIN".equals(rol);
+              boolean esAdmin = rol != null && rol.trim().equalsIgnoreCase("ADMIN");
               sesion.setAttribute("esAdmin", esAdmin);
               
               System.out.println("[LOGIN DEBUG] esAdmin: " + esAdmin);
