@@ -28,11 +28,16 @@ public class UsuarioBO implements IUsuarioBO {
 
     @Override
     public String autentificarGenerarToken(String correo, String contrasena) {
+        // Primero intentar con CLIENTE
         Usuario usuarioValido = usuarioDAO.autentificar(correo, contrasena, "CLIENTE");
+        
+        // Si no es cliente, intentar con ADMIN
+        if (usuarioValido == null) {
+            usuarioValido = usuarioDAO.autentificar(correo, contrasena, "ADMIN");
+        }
 
         if (usuarioValido != null) {
             return JWTProvider.generarTokem(usuarioValido.getCorreo(), usuarioValido.getRol());
-
         }
         return null;
     }

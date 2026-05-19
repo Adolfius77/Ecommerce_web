@@ -16,15 +16,23 @@
             --success-color: #27ae60;
         }
         
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
             min-height: 100vh;
             padding: 20px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         .navbar {
-            background-color: var(--primary-color);
+            background-color: var(--primary-color) !important;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid var(--secondary-color);
         }
         
         .navbar-brand {
@@ -33,12 +41,17 @@
             color: white !important;
         }
         
-        .admin-title {
+        .welcome-section {
             color: white;
             text-align: center;
             margin: 40px 0 30px;
+            font-size: 1.1rem;
+        }
+        
+        .welcome-section h2 {
             font-size: 2.5rem;
             font-weight: bold;
+            margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         
@@ -53,13 +66,13 @@
         
         .admin-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
             cursor: pointer;
-            text-decoration: none;
-            color: inherit;
+            text-decoration: none !important;
+            color: inherit !important;
             display: flex;
             flex-direction: column;
         }
@@ -67,6 +80,7 @@
         .admin-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            color: inherit !important;
         }
         
         .admin-card-header {
@@ -75,6 +89,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            min-height: 100px;
         }
         
         .admin-card-icon {
@@ -110,19 +125,21 @@
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
-            text-decoration: none;
+            text-decoration: none !important;
             text-align: center;
             font-weight: 600;
             transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
         
         .admin-card-button:hover {
             background: linear-gradient(135deg, #2980b9 0%, #1f618d 100%);
-            color: white;
+            color: white !important;
+            text-decoration: none !important;
             transform: scale(1.05);
         }
         
-        /* Color schemes for different card types */
         .card-usuarios .admin-card-header {
             background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
         }
@@ -159,40 +176,18 @@
             font-weight: bold;
             font-size: 1rem;
             border-radius: 5px;
-            text-decoration: none;
+            text-decoration: none !important;
             transition: all 0.3s ease;
             display: inline-block;
+            border: none;
+            cursor: pointer;
         }
         
         .btn-logout:hover {
             background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
-            color: white;
+            color: white !important;
+            text-decoration: none !important;
             transform: scale(1.05);
-        }
-        
-        .stats-section {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .stats-title {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        
-        .welcome-section {
-            color: white;
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
         }
     </style>
 </head>
@@ -227,7 +222,7 @@
         <a href="${pageContext.request.contextPath}/admin/gestionUsuarios" class="admin-card card-usuarios">
             <div class="admin-card-header">
                 <div>
-                    <h3 style="margin: 0; font-size: 1.2rem;">Usuarios</h3>
+                    <h3 style="margin: 0; font-size: 1.2rem; color: white;">Usuarios</h3>
                 </div>
                 <div class="admin-card-icon">
                     <i class="fas fa-users"></i>
@@ -236,7 +231,7 @@
             <div class="admin-card-body">
                 <div class="admin-card-title">Gestión de Usuarios</div>
                 <div class="admin-card-description">
-                    Administra cuentas de usuarios, cambia roles (CLIENTE/ADMIN), activa/desactiva cuentas.
+                    Administra cuentas de usuarios, cambia roles (CLIENTE/ADMIN), activa/desactiva.
                 </div>
                 <span class="admin-card-button">Ir a Usuarios</span>
             </div>
@@ -246,7 +241,7 @@
         <a href="${pageContext.request.contextPath}/admin/gestionProductos" class="admin-card card-productos">
             <div class="admin-card-header">
                 <div>
-                    <h3 style="margin: 0; font-size: 1.2rem;">Productos</h3>
+                    <h3 style="margin: 0; font-size: 1.2rem; color: white;">Productos</h3>
                 </div>
                 <div class="admin-card-icon">
                     <i class="fas fa-box"></i>
@@ -255,7 +250,7 @@
             <div class="admin-card-body">
                 <div class="admin-card-title">Gestión de Productos</div>
                 <div class="admin-card-description">
-                    Crea, edita y elimina productos. Manage imágenes, precios, disponibilidad.
+                    Crea, edita y elimina productos. Administra precios y disponibilidad.
                 </div>
                 <span class="admin-card-button">Ir a Productos</span>
             </div>
@@ -265,7 +260,7 @@
         <a href="${pageContext.request.contextPath}/admin/gestionCategorias" class="admin-card card-categorias">
             <div class="admin-card-header">
                 <div>
-                    <h3 style="margin: 0; font-size: 1.2rem;">Categorías</h3>
+                    <h3 style="margin: 0; font-size: 1.2rem; color: white;">Categorías</h3>
                 </div>
                 <div class="admin-card-icon">
                     <i class="fas fa-tags"></i>
@@ -274,7 +269,7 @@
             <div class="admin-card-body">
                 <div class="admin-card-title">Gestión de Categorías</div>
                 <div class="admin-card-description">
-                    Organiza los productos en categorías. Crea, edita y elimina categorías según sea necesario.
+                    Organiza los productos. Crea, edita y elimina categorías.
                 </div>
                 <span class="admin-card-button">Ir a Categorías</span>
             </div>
@@ -284,7 +279,7 @@
         <a href="${pageContext.request.contextPath}/admin/gestionPedidos" class="admin-card card-pedidos">
             <div class="admin-card-header">
                 <div>
-                    <h3 style="margin: 0; font-size: 1.2rem;">Pedidos</h3>
+                    <h3 style="margin: 0; font-size: 1.2rem; color: white;">Pedidos</h3>
                 </div>
                 <div class="admin-card-icon">
                     <i class="fas fa-shopping-cart"></i>
@@ -293,7 +288,7 @@
             <div class="admin-card-body">
                 <div class="admin-card-title">Gestión de Pedidos</div>
                 <div class="admin-card-description">
-                    Visualiza todos los pedidos, actualiza estados (pendiente, enviado, entregado).
+                    Visualiza todos los pedidos, actualiza estados.
                 </div>
                 <span class="admin-card-button">Ir a Pedidos</span>
             </div>
@@ -303,7 +298,7 @@
         <a href="${pageContext.request.contextPath}/admin/gestionPedidos" class="admin-card card-pagos">
             <div class="admin-card-header">
                 <div>
-                    <h3 style="margin: 0; font-size: 1.2rem;">Pagos</h3>
+                    <h3 style="margin: 0; font-size: 1.2rem; color: white;">Pagos</h3>
                 </div>
                 <div class="admin-card-icon">
                     <i class="fas fa-credit-card"></i>
@@ -312,7 +307,7 @@
             <div class="admin-card-body">
                 <div class="admin-card-title">Historial de Pagos</div>
                 <div class="admin-card-description">
-                    Revisa el historial de transacciones, métodos de pago utilizados y montos.
+                    Revisa transacciones, métodos de pago y montos.
                 </div>
                 <span class="admin-card-button">Ir a Pagos</span>
             </div>
@@ -322,7 +317,7 @@
         <a href="${pageContext.request.contextPath}/admin/moderacionResenas" class="admin-card card-resenas">
             <div class="admin-card-header">
                 <div>
-                    <h3 style="margin: 0; font-size: 1.2rem;">Reseñas</h3>
+                    <h3 style="margin: 0; font-size: 1.2rem; color: white;">Reseñas</h3>
                 </div>
                 <div class="admin-card-icon">
                     <i class="fas fa-star"></i>
@@ -331,7 +326,7 @@
             <div class="admin-card-body">
                 <div class="admin-card-title">Moderación de Reseñas</div>
                 <div class="admin-card-description">
-                    Aprueba o rechaza reseñas y comentarios de usuarios. Elimina contenido inapropiado.
+                    Aprueba o rechaza reseñas. Elimina contenido inapropiado.
                 </div>
                 <span class="admin-card-button">Ir a Reseñas</span>
             </div>

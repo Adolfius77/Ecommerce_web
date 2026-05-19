@@ -15,14 +15,14 @@
                 <nav>
                     <ul>
                         <li><a href="index.jsp"><i class="fa-solid fa-house"></i> Inicio</a></li>
-                        <li><a href="catalogoView.jsp"><i class="fa-solid fa-box-open"></i> Catálogo</a></li>
-                        <li><a href="gestionProductosView.jsp"><i class="fa-solid fa-warehouse"></i> Inventario</a></li>
-                        <li><a href="gestionCategoriasView.jsp"><i class="fa-solid fa-tags"></i> Categorías</a></li>
-                        <li><a href="gestionUsuariosView.jsp" class="active"><i class="fa-solid fa-users"></i> Usuarios</a></li>
-                        <li><a href="gestionPedidosPagosView.jsp"><i class="fa-solid fa-receipt"></i> Pedidos y pagos</a></li>
-                        <li><a href="moderacionResenasView.jsp"><i class="fa-solid fa-star-half-stroke"></i> Moderación reseñas</a></li>
-                        <li><a href="perfilUsuarioView.jsp"><i class="fa-solid fa-user"></i> Mi perfil (cliente)</a></li>
-                        <li><a href="misPedidosView.jsp"><i class="fa-solid fa-clock-rotate-left"></i> Mis pedidos</a></li>
+                        <li><a href="${pageContext.request.contextPath}/catalogo"><i class="fa-solid fa-box-open"></i> Catálogo</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/gestionProductos" class="active"><i class="fa-solid fa-warehouse"></i> Inventario</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/gestionCategorias"><i class="fa-solid fa-tags"></i> Categorías</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/gestionUsuarios"><i class="fa-solid fa-users"></i> Usuarios</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/gestionPedidos"><i class="fa-solid fa-receipt"></i> Pedidos y pagos</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/moderacionResenas"><i class="fa-solid fa-star-half-stroke"></i> Moderación reseñas</a></li>
+                        <li><a href="${pageContext.request.contextPath}/Perfil"><i class="fa-solid fa-user"></i> Mi perfil</a></li>
+                        <li><a href="${pageContext.request.contextPath}/MisPedidos"><i class="fa-solid fa-clock-rotate-left"></i> Mis pedidos</a></li>
                         <li><a href="loginView.jsp"><i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión</a></li>
                     </ul>
                 </nav>

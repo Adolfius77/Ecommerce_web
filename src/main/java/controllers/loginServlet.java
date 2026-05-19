@@ -22,12 +22,13 @@ import negocio.interfaces.IUsuarioBO;
  */
 @WebServlet(name = "loginServlet", urlPatterns = {"/login"})
 public class loginServlet extends HttpServlet {
-    
+
     private IUsuarioBO usuarioBo;
-    
+
     public loginServlet() {
         this.usuarioBo = new UsuarioBO();
     }
+
     //nota esto redirige
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,48 +39,42 @@ public class loginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      String correo = request.getParameter("email");
-      String password = request.getParameter("password");
-      
-      String token = usuarioBo.autentificarGenerarToken(correo, password);
-      
-      if(token != null){
-          HttpSession sesion = request.getSession();
-          sesion.setAttribute("token", token);
-          sesion.setAttribute("usuario", correo);
-           
-        
-          Optional<model.Usuario> usuarioOpt = usuarioBo.obtenerUsuarioPorCorreo(correo);
-          if (usuarioOpt.isPresent()) {
-              model.Usuario usuario = usuarioOpt.get();
-              String rol = usuario.getRol();
-              sesion.setAttribute("rol", rol);
-              
-              System.out.println("[LOGIN DEBUG] Correo: " + correo);
-              System.out.println("[LOGIN DEBUG] Rol obtenido: " + rol);
-              System.out.println("[LOGIN DEBUG] Es NULL? " + (rol == null));
-              
-              boolean esAdmin = rol != null && rol.trim().equalsIgnoreCase("ADMIN");
-              sesion.setAttribute("esAdmin", esAdmin);
-              
-              System.out.println("[LOGIN DEBUG] esAdmin: " + esAdmin);
-               
-             
-              if (esAdmin) {
-           
-                  response.sendRedirect(request.getContextPath() + "/admin/dashboard");
-                  return;
-              }
-          } else {
-              System.out.println("[LOGIN DEBUG] Usuario NO encontrado en BD después de autenticacion");
-          }
-           
-          response.sendRedirect(request.getContextPath() + "/index.jsp");
-      }else{
-          request.setAttribute("error", "correo o contrasena incorrectos");
-          request.getRequestDispatcher("/loginView.jsp").forward(request, response);
-      }
+        String correo = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        String token = usuarioBo.autentificarGenerarToken(correo, password);
+
+        if (token != null) {
+            HttpSession sesion = request.getSession();
+            sesion.setAttribute("token", token);
+            sesion.setAttribute("usuario", correo);
+
+            Optional<model.Usuario> usuarioOpt = usuarioBo.obtenerUsuarioPorCorreo(correo);
+            if (usuarioOpt.isPresent()) {
+                model.Usuario usuario = usuarioOpt.get();
+                String rol = usuario.getRol();
+                sesion.setAttribute("rol", rol);
+
+                boolean esAdmin = rol != null && rol.trim().equalsIgnoreCase("ADMIN");
+                sesion.setAttribute("esAdmin", esAdmin);
+
+                if (esAdmin) {
+                    request.setAttribute("exito", "inicio de sesion exitoso rederigiendo al panel de control");
+                    request.setAttribute("urlDestino", request.getContextPath() + "/admin/dashboard");
+                    request.getRequestDispatcher("/loginView.jsp").forward(request, response);
+                }
+            } else {
+                System.out.println("Usuario NO encontrado en BD despues de autenticacion");
+            }
+
+            request.setAttribute("exito", "Inicio de sesión exitoso, Redirigiendo a la tienda...");
+            request.setAttribute("urlDestino", request.getContextPath() + "/index.jsp");
+            request.getRequestDispatcher("/loginView.jsp").forward(request, response);
+
+        } else {
+            request.setAttribute("error", "correo o contrasena incorrectos");
+            request.getRequestDispatcher("/loginView.jsp").forward(request, response);
+        }
     }
 
-    
 }

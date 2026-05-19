@@ -48,6 +48,24 @@
                             <h2>Bienvenido al sistema</h2>
                             <p>Ingrese sus credenciales</p>
                         </div>
+                        <% if (request.getAttribute("exito") != null) {%>
+                        <div style="background-color: #d4edda; color: #155724; padding: 10px; margin-bottom: 15px; border-radius: 5px; text-align: center; border: 1px solid #c3e6cb;">
+                            <%= request.getAttribute("exito")%>
+                        </div>
+                        <script>
+                          
+                            setTimeout(function () {
+                                window.location.href = '<%= request.getAttribute("urlDestino")%>';
+                            }, 2000); 
+                        </script>
+                        <% } %>
+
+                        <% if (request.getAttribute("error") != null) {%>
+                        <div style="background-color: #f8d7da; color: #721c24; padding: 10px; margin-bottom: 15px; border-radius: 5px; text-align: center; border: 1px solid #f5c6cb;">
+                            <%= request.getAttribute("error")%>
+                        </div>
+                        <% }%>
+
                         <form id = "loginForm" class = "formulario-login" action="${pageContext.request.contextPath}/login" method="POST">
                             <input type="hidden" name="accion" value="loginAdmin">
                             <div class="campo-form">

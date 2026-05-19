@@ -54,6 +54,10 @@ public class RegistroServlet extends HttpServlet {
             request.getRequestDispatcher("/registroView.jsp").forward(request, response);
             return;
         }
+        if(telefono.length() < 10){
+            request.setAttribute("error", "el telefono debe tener 10 digitos");
+            return;
+        }
         Usuario nuevoUsuario = new Usuario();
         nuevoUsuario.setNombre(nombre.trim() + " " + (apellido != null ? apellido.trim() : ""));
         nuevoUsuario.setCorreo(correo.trim());
@@ -64,7 +68,10 @@ public class RegistroServlet extends HttpServlet {
         
         try {
             usuarioBo.registrarUsuario(nuevoUsuario);
-            response.sendRedirect(request.getContextPath()+ "/loginView.jsp?registrado=true");
+            request.setAttribute("exito","registro exitososo");
+            request.setAttribute("urlDestino", request.getContextPath() + "/loginView.jsp?registrado=true");
+            request.getRequestDispatcher("/registroView.jsp").forward(request, response);
+            
             
         } catch (Exception e) {
             request.setAttribute("error", "Error al registrar el usuario: " + e.getMessage());

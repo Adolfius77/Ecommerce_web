@@ -48,6 +48,29 @@
                             <h2>Crea tu cuenta</h2>
                             <p>Completa los datos para registrarte en el sistema.</p>
                         </div>
+                        <div class="registro-header">
+                            <h2>Crea tu cuenta</h2>
+                            <p>Completa los datos para registrarte en el sistema.</p>
+                        </div>
+                        
+                        <% if (request.getAttribute("exito") != null) { %>
+                            <div style="background-color: #d4edda; color: #155724; padding: 10px; margin-bottom: 15px; border-radius: 5px; text-align: center; border: 1px solid #c3e6cb;">
+                                <%= request.getAttribute("exito") %>
+                            </div>
+                            <script>
+                                
+                                setTimeout(function() {
+                                    window.location.href = '<%= request.getAttribute("urlDestino") %>';
+                                }, 2000); 
+                            </script>
+                        <% } %>
+
+                        <% if (request.getAttribute("error") != null) { %>
+                            <div style="background-color: #f8d7da; color: #721c24; padding: 10px; margin-bottom: 15px; border-radius: 5px; text-align: center; border: 1px solid #f5c6cb;">
+                                <%= request.getAttribute("error") %>
+                            </div>
+                        <% } %>
+                        
                         <form  class="registro-form" action="${pageContext.request.contextPath}/Registro" method="POST">
                             <div class="form-grid">
                                 <div class="campo-form">
