@@ -23,4 +23,6 @@ public interface IResenaBO {
     java.util.Optional<reseña> obtenerResena(ObjectId id) throws Exception;
     
     boolean actualizarResena(reseña resena) throws Exception;
+
+    void registrarResena(ObjectId productoId, String correoUsuario, double calificacion, String comentario) throws Exception;
 }

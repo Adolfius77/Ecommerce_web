@@ -23,6 +23,7 @@ import negocio.interfaces.IPedidoBO;
 import negocio.interfaces.IProductoBO;
 import org.bson.types.ObjectId;
 import util.EmailService;
+import util.PagoValidator;
 
 /**
  * Servlet para confirmar y crear un pedido
@@ -73,13 +74,27 @@ public class ConfirmarPedidoServlet extends HttpServlet {
         Usuario usuario = usuarioOpt.get();
         
         String metodoPago = request.getParameter("metodoPago");
-        String direccionEnvio = request.getParameter("direccionEnvio");
-        
-        if (metodoPago == null || metodoPago.trim().isEmpty() ||
-            direccionEnvio == null || direccionEnvio.trim().isEmpty()) {
-            request.setAttribute("error", "Debe proporcionar método de pago y dirección de envío");
+        String direccionEnvio = PagoValidator.construirDireccionEnvio(request);
+
+        java.util.Optional<String> errorPago = PagoValidator.validar(request);
+        if (errorPago.isPresent()) {
+            request.setAttribute("error", errorPago.get());
             request.setAttribute("usuario", usuario);
             request.setAttribute("carrito", carrito);
+            double subtotalErr = carrito.stream().mapToDouble(ItemCarrito::getSubtotal).sum();
+            request.setAttribute("subtotal", subtotalErr);
+            request.setAttribute("total", subtotalErr);
+            request.getRequestDispatcher("/checkoutView.jsp").forward(request, response);
+            return;
+        }
+
+        if (direccionEnvio == null || direccionEnvio.trim().isEmpty()) {
+            request.setAttribute("error", "Debe proporcionar la dirección de envío");
+            request.setAttribute("usuario", usuario);
+            request.setAttribute("carrito", carrito);
+            double subtotalErr = carrito.stream().mapToDouble(ItemCarrito::getSubtotal).sum();
+            request.setAttribute("subtotal", subtotalErr);
+            request.setAttribute("total", subtotalErr);
             request.getRequestDispatcher("/checkoutView.jsp").forward(request, response);
             return;
         }
@@ -116,10 +131,15 @@ public class ConfirmarPedidoServlet extends HttpServlet {
             
             try {
                 EmailService emailService = new EmailService();
-                emailService.enviarConfirmacionPedido(usuario.getCorreo(), usuario.getNombre(), 
-                                                     numeroPedido, total);
+                emailService.enviarConfirmacionPedido(usuario.getCorreo(), usuario.getNombre(),
+                        numeroPedido, total);
+                request.setAttribute("emailEnviado", true);
             } catch (Exception e) {
                 System.err.println("Error al enviar email: " + e.getMessage());
+                request.setAttribute("avisoEmail",
+                        "Pedido registrado correctamente. No se pudo enviar el correo de confirmación: "
+                                + e.getMessage()
+                                + ". Configure SENDER_EMAIL y SENDER_PASSWORD en el servidor.");
             }
             
             request.setAttribute("pedido", pedido);
@@ -136,6 +156,9 @@ public class ConfirmarPedidoServlet extends HttpServlet {
             request.setAttribute("error", "Error al crear el pedido: " + e.getMessage());
             request.setAttribute("usuario", usuario);
             request.setAttribute("carrito", carrito);
+            double subtotalErr = carrito.stream().mapToDouble(ItemCarrito::getSubtotal).sum();
+            request.setAttribute("subtotal", subtotalErr);
+            request.setAttribute("total", subtotalErr);
             request.getRequestDispatcher("/checkoutView.jsp").forward(request, response);
         }
     }

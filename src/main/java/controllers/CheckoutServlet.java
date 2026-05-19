@@ -62,6 +62,7 @@ public class CheckoutServlet extends HttpServlet {
         request.setAttribute("usuario", usuario);
         request.setAttribute("carrito", carrito);
         request.setAttribute("total", total);
+        request.setAttribute("subtotal", total);
         request.setAttribute("cantidadItems", carrito.size());
         request.getRequestDispatcher("/checkoutView.jsp").forward(request, response);
     }

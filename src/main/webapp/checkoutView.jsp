@@ -48,7 +48,7 @@
 
                     <div class="checkout-grid">
                         <section class="checkout-form">
-                            <form method="POST" action="${pageContext.request.contextPath}/checkout">
+                            <form method="POST" action="${pageContext.request.contextPath}/confirmarPedido" id="formCheckout">
                                 <div class="form-section">
                                     <h3>Dirección de envío</h3>
                                     <div class="form-row">
@@ -99,21 +99,21 @@
                                     <div class="form-row">
                                         <div class="campo-form">
                                             <label for="tarjeta">Número de tarjeta</label>
-                                            <input type="text" id="tarjeta" name="numeroTarjeta" placeholder="0000 0000 0000 0000" required>
+                                            <input type="text" id="tarjeta" name="numeroTarjeta" placeholder="0000 0000 0000 0000">
                                         </div>
                                         <div class="campo-form">
                                             <label for="titular">Titular</label>
-                                            <input type="text" id="titular" name="titularTarjeta" placeholder="Nombre en la tarjeta" required>
+                                            <input type="text" id="titular" name="titularTarjeta" placeholder="Nombre en la tarjeta">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="campo-form">
                                             <label for="expira">Fecha de expiración</label>
-                                            <input type="text" id="expira" name="fechaExpiracion" placeholder="MM/AA" required>
+                                            <input type="text" id="expira" name="fechaExpiracion" placeholder="MM/AA">
                                         </div>
                                         <div class="campo-form">
                                             <label for="cvv">CVV</label>
-                                            <input type="password" id="cvv" name="cvv" placeholder="***" required>
+                                            <input type="password" id="cvv" name="cvv" placeholder="***">
                                         </div>
                                     </div>
                                     <label class="opcion-radio"><input type="radio" name="metodoPago" value="transferencia" required> Transferencia bancaria</label>
@@ -129,8 +129,8 @@
                             <c:if test="${not empty carrito}">
                                 <c:forEach var="item" items="${carrito}">
                                     <div style="padding: 8px 0; border-bottom: 1px solid #ddd;">
-                                        <div>${item.producto.nombre}</div>
-                                        <div style="font-size: 0.9em; color: #666;">Cant: ${item.cantidad} x $${item.producto.precio}</div>
+                                        <div>${item.nombre}</div>
+                                        <div style="font-size: 0.9em; color: #666;">Cant: ${item.cantidad} x $${item.precioUnitario}</div>
                                     </div>
                                 </c:forEach>
                             </c:if>
@@ -160,6 +160,18 @@
         </div>
 
         <script>
+            function actualizarCamposTarjeta() {
+                const esTarjeta = document.querySelector('input[name="metodoPago"]:checked')?.value === 'tarjeta';
+                ['tarjeta', 'titular', 'expira', 'cvv'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.required = esTarjeta;
+                });
+            }
+            document.querySelectorAll('input[name="metodoPago"]').forEach(radio => {
+                radio.addEventListener('change', actualizarCamposTarjeta);
+            });
+            actualizarCamposTarjeta();
+
             document.querySelectorAll('input[name="metodoEnvio"]').forEach(radio => {
                 radio.addEventListener('change', function () {
                     let costo = this.value === 'express' ? 15 : 8;

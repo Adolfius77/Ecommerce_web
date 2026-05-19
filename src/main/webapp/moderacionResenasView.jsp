@@ -1,4 +1,6 @@
 <%-- Moderación de reseñas (vista administrador) --%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,13 +18,13 @@
                     <ul>
                         <li><a href="index.jsp"><i class="fa-solid fa-house"></i> Inicio</a></li>
                         <li><a href="${pageContext.request.contextPath}/catalogo"><i class="fa-solid fa-box-open"></i> Catálogo</a></li>
-                        <li><a href="${pageContext.request.contextPath}/admin/gestionProductos" class="active"><i class="fa-solid fa-warehouse"></i> Inventario</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/gestionProductos"><i class="fa-solid fa-warehouse"></i> Inventario</a></li>
                         <li><a href="${pageContext.request.contextPath}/admin/gestionCategorias"><i class="fa-solid fa-tags"></i> Categorías</a></li>
                         <li><a href="${pageContext.request.contextPath}/admin/gestionUsuarios"><i class="fa-solid fa-users"></i> Usuarios</a></li>
                         <li><a href="${pageContext.request.contextPath}/admin/gestionPedidos"><i class="fa-solid fa-receipt"></i> Pedidos y pagos</a></li>
-                        <li><a href="${pageContext.request.contextPath}/admin/moderacionResenas"><i class="fa-solid fa-star-half-stroke"></i> Moderación reseñas</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/moderacionResenas" class="active"><i class="fa-solid fa-star-half-stroke"></i> Moderación reseñas</a></li>
                         <li><a href="${pageContext.request.contextPath}/Perfil"><i class="fa-solid fa-user"></i> Mi perfil (cliente)</a></li>
-                        <li><a href="${pageContext.request.contextPath}/MisPedidos"><i class="fa-solid fa-clock-rotate-left"></i> Mis pedidos</a></li>
+                        <li><a href="${pageContext.request.contextPath}/misPedidos"><i class="fa-solid fa-clock-rotate-left"></i> Mis pedidos</a></li>
                         <li><a href="loginView.jsp"><i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión</a></li>
                     </ul>
                 </nav>
@@ -38,9 +40,21 @@
                     <div class="page-header">
                         <div>
                             <h2>Moderación de reseñas</h2>
-                            <p>Elimina comentarios inapropiados. Datos de ejemplo alineados con el modelo reseña (producto, usuario, calificación, comentario, fecha).</p>
+                            <p>${tituloFiltro != null ? tituloFiltro : 'Todas las reseñas'}</p>
+                            <p>
+                                <a href="${pageContext.request.contextPath}/admin/moderacionResenas">Todas</a> |
+                                <a href="${pageContext.request.contextPath}/admin/moderacionResenas?filtro=pendientes">Pendientes</a> |
+                                <a href="${pageContext.request.contextPath}/admin/moderacionResenas?filtro=aprobadas">Aprobadas</a>
+                            </p>
                         </div>
                     </div>
+
+                    <c:if test="${not empty mensaje}">
+                        <p style="color: green;">${mensaje}</p>
+                    </c:if>
+                    <c:if test="${not empty error}">
+                        <p style="color: red;">${error}</p>
+                    </c:if>
 
                     <div class="table-wrap">
                         <table class="data-table">
@@ -51,40 +65,48 @@
                                     <th>Calificación</th>
                                     <th>Comentario</th>
                                     <th>Fecha</th>
+                                    <th>Estado</th>
                                     <th>Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Smartwatch Fit</td>
-                                    <td>cliente.demo</td>
-                                    <td>4.5 / 5</td>
-                                    <td class="comentario-celda" title="Buena relación calidad-precio.">Buena relación calidad-precio.</td>
-                                    <td>2026-05-11</td>
-                                    <td class="acciones-celda">
-                                        <button type="button" class="btn-peligro" title="Eliminar reseña"><i class="fa-solid fa-trash"></i> Eliminar</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Audífonos inalámbricos</td>
-                                    <td>usuario_prueba</td>
-                                    <td>2 / 5</td>
-                                    <td class="comentario-celda" title="Comentario inapropiado (ejemplo).">Comentario inapropiado (ejemplo).</td>
-                                    <td>2026-05-10</td>
-                                    <td class="acciones-celda">
-                                        <button type="button" class="btn-peligro" title="Eliminar reseña"><i class="fa-solid fa-trash"></i> Eliminar</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Lámpara de escritorio</td>
-                                    <td>Ana Ruiz</td>
-                                    <td>5 / 5</td>
-                                    <td class="comentario-celda" title="Llegó rápido y bien empaquetado.">Llegó rápido y bien empaquetado.</td>
-                                    <td>2026-05-07</td>
-                                    <td class="acciones-celda">
-                                        <button type="button" class="btn-peligro" title="Eliminar reseña"><i class="fa-solid fa-trash"></i> Eliminar</button>
-                                    </td>
-                                </tr>
+                                <c:forEach var="r" items="${resenas}">
+                                    <tr>
+                                        <td>
+                                            <c:set var="rid" value="${r.id}"/>
+                                            ${nombrePorResena[rid] != null ? nombrePorResena[rid] : '—'}
+                                        </td>
+                                        <td>${r.nombreUsuario}</td>
+                                        <td>${r.calificacion} / 5</td>
+                                        <td class="comentario-celda" title="${r.comentario}">${r.comentario}</td>
+                                        <td><fmt:formatDate value="${r.fecha}" pattern="yyyy-MM-dd"/></td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${r.aprobada}">Aprobada</c:when>
+                                                <c:otherwise>Pendiente</c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td class="acciones-celda">
+                                            <c:if test="${!r.aprobada}">
+                                                <form method="POST" action="${pageContext.request.contextPath}/admin/moderacionResenas" style="display:inline;">
+                                                    <input type="hidden" name="accion" value="aprobar">
+                                                    <input type="hidden" name="resenaId" value="${r.id}">
+                                                    <button type="submit" class="btn-primario" title="Aprobar reseña"><i class="fa-solid fa-check"></i> Aprobar</button>
+                                                </form>
+                                            </c:if>
+                                            <form method="POST" action="${pageContext.request.contextPath}/admin/moderacionResenas" style="display:inline;">
+                                                <input type="hidden" name="accion" value="rechazar">
+                                                <input type="hidden" name="resenaId" value="${r.id}">
+                                                <button type="submit" class="btn-peligro" title="Eliminar reseña"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                <c:if test="${empty resenas}">
+                                    <tr>
+                                        <td colspan="7">No hay reseñas para mostrar.</td>
+                                    </tr>
+                                </c:if>
                             </tbody>
                         </table>
                     </div>

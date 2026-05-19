@@ -9,8 +9,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
+import model.Producto;
 import model.reseña;
+import negocio.ProductoBO;
 import negocio.ResenaBO;
+import negocio.interfaces.IProductoBO;
 import negocio.interfaces.IResenaBO;
 import org.bson.types.ObjectId;
 
@@ -21,9 +26,11 @@ import org.bson.types.ObjectId;
 public class ModeraciónResenasServlet extends HttpServlet {
     
     private IResenaBO resenaBO;
+    private IProductoBO productoBO;
     
     public ModeraciónResenasServlet() {
         this.resenaBO = new ResenaBO();
+        this.productoBO = new ProductoBO();
     }
     
     @Override
@@ -49,7 +56,20 @@ public class ModeraciónResenasServlet extends HttpServlet {
                 request.setAttribute("tituloFiltro", "Todas las Reseñas");
             }
             
+            Map<String, String> nombrePorResena = new HashMap<>();
+            for (reseña r : resenas) {
+                String nombreProducto = "—";
+                if (r.getProductoId() != null) {
+                    nombreProducto = productoBO.obtenerPorId(r.getProductoId())
+                            .map(Producto::getNombre)
+                            .orElse(r.getProductoId().toHexString());
+                }
+                if (r.getId() != null) {
+                    nombrePorResena.put(r.getId().toHexString(), nombreProducto);
+                }
+            }
             request.setAttribute("resenas", resenas);
+            request.setAttribute("nombrePorResena", nombrePorResena);
             request.getRequestDispatcher("/moderacionResenasView.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("error", "Error al listar reseñas: " + e.getMessage());

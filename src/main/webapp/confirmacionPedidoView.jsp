@@ -20,6 +20,12 @@
         <c:if test="${error != null}">
             <div class="alert alert-danger">${error}</div>
         </c:if>
+        <c:if test="${avisoEmail != null}">
+            <div class="alert alert-warning">${avisoEmail}</div>
+        </c:if>
+        <c:if test="${emailEnviado}">
+            <div class="alert alert-success">Se envió un correo de confirmación a su bandeja de entrada.</div>
+        </c:if>
         
         <div class="confirmacion-pedido">
             <c:if test="${numeroPedido != null}">
@@ -42,9 +48,9 @@
                     <tbody>
                         <c:forEach var="producto" items="${pedido.productos}">
                             <tr>
-                                <td>${producto.nombre}</td>
+                                <td>${producto.nombreProducto}</td>
                                 <td>${producto.cantidad}</td>
-                                <td>$<fmt:formatNumber value="${producto.precio}" type="number" minFractionDigits="2"/></td>
+                                <td>$<fmt:formatNumber value="${producto.precioUnitario}" type="number" minFractionDigits="2"/></td>
                                 <td>$<fmt:formatNumber value="${producto.subtotal}" type="number" minFractionDigits="2"/></td>
                             </tr>
                         </c:forEach>
